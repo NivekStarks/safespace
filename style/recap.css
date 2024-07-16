@@ -1,0 +1,106 @@
+@charset "UTF-8";
+
+
+/*--Body-- Section2--*/
+/*--Section2-titre--*/
+.section2{
+	height: 1400px;
+	background: white;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+}
+
+.section2 .u-container{
+
+	width: 80%;
+	height:  100%;
+	margin-top: 50px;
+}
+
+::placeholder {
+  color: black;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+
+input{
+    padding-left: 10px;
+    border: 0;
+    margin-bottom: 40px;
+}
+
+button {
+
+	
+    border: 0;
+    margin-bottom: 5px;
+    color:  white;
+    text-align: left;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.section2 .u-top-text-long {
+    width: 50%;
+}
+
+.retour_bouton {
+
+    padding-left: 10px;
+    border: 0;
+    margin-bottom: 40px;
+    color:  black;
+    text-align: left;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";
+    margin-right: 2px;
+}
+
+.retour_bouton_lien {
+
+    padding-left: 10px;
+    border: 0;
+    margin-bottom: 40px;
+    color:  black;
+    text-align: left;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";
+}
+
+
+
+
+@media screen and (max-width: 700px){
+
+.section2 .u-top-column-t-long {
+    display: flex;
+    flex-direction: row;
+    background: white;
+    align-content: flex-start;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 70px 20px;
+    flex-wrap: wrap;
+}
+
+.section2 .no-margin {
+    margin: 0 0 40px 0;
+    width: 80%;
+}
+
+.section2 .u-top-text-long {
+    width: 90%;
+}
+
+.section2 .u-top-text-long-- {
+    padding-top: 25px;
+    padding-left: 0px; 
+}
+
+
+
+}
