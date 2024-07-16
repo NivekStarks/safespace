@@ -12,7 +12,7 @@
     <body class="bg-gray-100">
 
         <?php
-            include "header.php";
+            include "include/header.php";
         ?>
 
         <!-- Accueil -->
