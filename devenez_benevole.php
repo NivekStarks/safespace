@@ -16,6 +16,12 @@
         <h2 class="text-2xl font-bold text-gray-800 mb-4">Formulaire d'inscription</h2>
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" class="space-y-4">
             
+            <!-- ORGANISATEUR -->
+            <div>
+                <label for="organisateur" class="block text-gray-600">Organisateur :</label>
+                <input type="text" id="organisateur" name="organisateur" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            </div>
+            
             <!-- NOM -->
             <div>
                 <label for="nom" class="block text-gray-600">Nom :</label>
@@ -45,10 +51,14 @@
             </div>
 
             <!-- SIRET -->
-            <?php if (isset($_POST['profil']) && $_POST['profil'] == 'entreprise'): ?>
+            <?php if (isset($_POST['profil']) && ($_POST['profil'] == 'association' || $_POST['profil'] == 'entreprise')): ?>
                 <div>
                     <label for="numero_siret" class="block text-gray-600">Numéro SIRET :</label>
                     <input type="text" id="numero_siret" name="numero_siret" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+                <div>
+                    <label for="email_contact" class="block text-gray-600">Adresse mail de contact :</label>
+                    <input type="email" id="email_contact" name="email_contact" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                 </div>
             <?php endif; ?>
 
@@ -76,6 +86,47 @@
             <div>
                 <label for="ville" class="block text-gray-600">Ville :</label>
                 <input type="text" id="ville" name="ville" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            </div>
+
+            <!-- CHOIX DE LA FORMATION -->
+            <div>
+                <label class="block text-gray-600">Choix de la formation :</label>
+                <div class="mt-2">
+                    <label for="formation_flash" class="inline-flex items-center">
+                        <input type="radio" id="formation_flash" name="choix_formation" value="flash" class="form-radio" required>
+                        <span class="ml-2">Formation "Flash"</span>
+                    </label>
+                    <label for="formation_autre" class="inline-flex items-center ml-6">
+                        <input type="radio" id="formation_autre" name="choix_formation" value="autre" class="form-radio" required>
+                        <span class="ml-2">Autre formation</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- LIEU DE LA FORMATION -->
+            <div>
+                <label for="lieu_formation" class="block text-gray-600">Lieu de la formation :</label>
+                <input type="text" id="lieu_formation" name="lieu_formation" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            </div>
+
+            <!-- NOMBRE DE PARTICIPANTS -->
+            <div>
+                <label for="participants" class="block text-gray-600">Nombre de participants :</label>
+                <input type="number" id="participants" name="participants" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            </div>
+
+            <!-- CONTEXT DE LA DEMANDE -->
+            <?php if (isset($_POST['choix_formation']) && $_POST['choix_formation'] == 'autre'): ?>
+                <div>
+                    <label for="contexte_demande" class="block text-gray-600">Contexte de la demande :</label>
+                    <textarea id="contexte_demande" name="contexte_demande" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
+                </div>
+            <?php endif; ?>
+
+            <!-- DESCRIPTION DU BESOIN -->
+            <div>
+                <label for="description_besoin" class="block text-gray-600">Description du besoin :</label>
+                <textarea id="description_besoin" name="description_besoin" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
             </div>
 
             <!-- BOUTON -->
