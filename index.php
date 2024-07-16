@@ -4,22 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page de Présentation</title>
+    <link rel="shortcut icon" href="assets/img/parenthese_logo.jpeg" type="image/x-icon">
+    <link rel="stylesheet" href="assets/styles/style.css">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100">
 
 <!-- Navbar -->
-<nav class="bg-white shadow-lg px-24">
+<nav class="bg-purple shadow-lg px-24">
     <div class="container mx-auto px-4">
         <div class="flex justify-between items-center py-4">
             <!-- Logo -->
             <div class="text-xl font-bold text-gray-800">
-                <a href="#">MonLogo</a>
+                <a href="">
+                    <img class="logo" src="assets/img/parenthese_logo.jpeg" alt="">
+                </a>
             </div>
             <!-- Links -->
-            <div class="hidden md:flex space-x-4">
-                <a href="#" class="text-gray-800 hover:text-blue-500">Accueil</a>
-                <a href="#" class="text-gray-800 hover:text-blue-500">À propos</a>
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="#" class="text-white hover:text-blue-500">Accueil</a>
+                <a href="#" class="text-white hover:text-blue-500">À propos</a>
             </div>
             <!-- Connexion Button -->
             <div>
