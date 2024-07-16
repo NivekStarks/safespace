@@ -24,7 +24,9 @@
                 <div class="">sensibiliser, faire des ateliers, présenter notre stand pour prévenir tout type de violence qui peuvent arriver lors des évènements Sourds à Toulouse et en France.</div>
             </div>
         </section>
-            <!-- Présentation de l'entreprise -->
+
+
+            <!-- Présentation de l'association -->
             <section class="container mx-auto px-24 py-8">
                 <h1 class="text-3xl font-bold text-gray-800 mb-4">Parenthese Safe Space</h1>
                 <p class="text-gray-600 mb-8">
@@ -38,54 +40,57 @@
             </section>
 
             <!-- Formulaire de Contact -->
-            <section class="container mx-auto px-24 py-8 bg-white shadow-lg rounded-lg">
-        
-        <!-- TITRE FORMULAIRE DE CONTACT -->
-        <h2 class="text-2xl font-bold text-gray-800 mb-4">Contactez nous pour une mise en place d'un safe space</h2>
+            <section class="container mx-auto px-4 py-8 bg-white shadow-lg rounded-lg">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Contactez-nous pour une mise en place d'un safe space</h2>
+        <div class="form-container">
+            <div class="image"></div>
+            <div class="form">
                 <form action="#" method="POST" class="space-y-4">
-        
-            <!-- SOUS TITIRE CONTACT -->
-            <div>
-                        <label for="name" class="block text-gray-600">Titre de l'évènement</label>
+                    
+                    <!-- Titre de l'évènement -->
+                    <div>
+                        <label for="name" class="block text-gray-600">Titre de l'évènement :</label>
                         <input type="text" id="name" name="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                     </div>
-        
-            <!-- DEBUT DATE -->
-            <div>
-                <label for="startDataTime" class="block text-gray-600">Date et Heure de début de l'évènement</label>
-                <input type="datatime-local" id="startDateTime" name="startDateTime" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-            </div>
-
-            <!-- END DATE -->
-            <div>
-                <label for="endDataTime" class="block text-gray-600">Date et Heure de fin de l'évènement</label>
-                <input type="datatime-local" id="endDateTime" name="endDateTime" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-            </div>
-
-            <!-- NOMBRE FOR EVENT -->
-            <div>
-                <label for="participants" class="block text-gray-600">Nombre prévu de participants :</label>
-                <input type="number" id="number" name="participants" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required></input>
-            </div>
-
-            <!-- DOMAINE -->
-            <div>
-                        <label for="domain" class="block text-gray-600">Domaine : <label>
-                                <input type="text" id="domain" name="domain" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required></input>
+                    
+                    <!-- Date et Heure de début -->
+                    <div>
+                        <label for="startDateTime" class="block text-gray-600">Date et Heure de début :</label>
+                        <input type="datetime-local" id="startDateTime" name="startDateTime" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                     </div>
-        
-            <!-- ADD MESSAGE -->
-            <div>
-                        <label for="needs" class="block text-gray-600">Votre besoin : <label>
-                                <textarea id="needs" name="needs" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
+                    
+                    <!-- Date et Heure de fin -->
+                    <div>
+                        <label for="endDateTime" class="block text-gray-600">Date et Heure de fin :</label>
+                        <input type="datetime-local" id="endDateTime" name="endDateTime" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                     </div>
-        
-            <!-- BUTTON -->
-            <div>
+                    
+                    <!-- Nombre de participants -->
+                    <div>
+                        <label for="participants" class="block text-gray-600">Nombre prévu de participants :</label>
+                        <input type="number" id="participants" name="participants" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+                    
+                    <!-- Domaine -->
+                    <div>
+                        <label for="domain" class="block text-gray-600">Domaine :</label>
+                        <input type="text" id="domain" name="domain" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+                    
+                    <!-- Votre besoin -->
+                    <div>
+                        <label for="needs" class="block text-gray-600">Votre besoin :</label>
+                        <textarea id="needs" name="needs" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
+                    </div>
+                    
+                    <!-- Bouton Envoyer -->
+                    <div>
                         <button type="submit" class="w-full px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">Envoyer</button>
                     </div>
                 </form>
-            </section>
+            </div>
+        </div>
+    </section>
 
     
 
