@@ -12,6 +12,11 @@
     <?php
         include "header.php";
     ?>
+
+    <section>
+        <h1 class="text-2xl font-bold text-gray-800 mb-4">Devenez Bénévole et Faites la Différence !</h1>
+        <div class="text-center">Vous souhaitez contribuer à une cause qui vous tient à cœur ? Rejoignez notre équipe de bénévoles et participez à des événements significatifs ! Remplissez le formulaire ci-dessous pour nous faire part de vos coordonnées et de vos besoins. Ensemble, nous pouvons créer un impact positif et construire une communauté solidaire. Votre engagement est précieux et nous avons hâte de collaborer avec vous !</div>
+    </section>
     <section class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md">
         <h2 class="text-2xl font-bold text-gray-800 mb-4">Formulaire d'inscription</h2>
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" class="space-y-4">
