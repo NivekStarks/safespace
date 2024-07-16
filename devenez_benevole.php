@@ -4,9 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Devenez un bénévole !</title>
+    <link rel="shortcut icon" href="assets/img/parenthese_logo.jpeg" type="image/x-icon">
+    <link rel="stylesheet" href="assets/styles/style.css">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100 p-6">
+    <?php
+        include "header.php";
+    ?>
     <section class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md">
         <h2 class="text-2xl font-bold text-gray-800 mb-4">Formulaire d'inscription</h2>
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" class="space-y-4">

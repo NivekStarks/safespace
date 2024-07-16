@@ -1,7 +1,13 @@
 
-
+.bg-custom {
+    background-image: url('../img/parenthese_logo.jpeg');
+}
 .bg-purple {
     background: #663B92;
+}
+
+.txt-purple {
+    color: #663B92;
 }
 
 .logo {
