@@ -11,28 +11,9 @@
     </head>
     <body class="bg-gray-100">
 
-        <!-- Navbar -->
-        <nav class="bg-purple shadow-lg px-24">
-            <div class="container mx-auto px-4">
-                <div class="flex justify-between items-center py-4">
-                <!-- Logo -->
-                    <div class="text-xl font-bold text-gray-800">
-                        <a href="">
-                            <img class="logo" src="assets/img/parenthese_logo.jpeg" alt="">
-                        </a>
-                    </div>
-                    <!-- Links -->
-                    <div class="hidden md:flex items-center space-x-4">
-                        <a href="#" class="text-white hover:text-blue-500">Accueil</a>
-                        <a href="#" class="text-white hover:text-blue-500">À propos</a>
-                    </div>
-                    <!-- Connexion Button -->
-                    <div>
-                        <a href="#" class="px-4 py-2 bg-white text-purple rounded hover:bg-purple-800 hover:text-white">Connexion</a>
-                    </div>
-                </div>
-            </div>
-        </nav>
+        <?php
+            include "header.php";
+        ?>
 
         <!-- Accueil -->
 
@@ -43,48 +24,6 @@
                 <div class="">sensibiliser, faire des ateliers, présenter notre stand pour prévenir tout type de violence qui peuvent arriver lors des évènements Sourds à Toulouse et en France.</div>
             </div>
         </section>
-
-        <!-- Switch formulaire --> 
-
-        <div class="bg-white p-8 rounded shadow-md w-full max-w-md">
-            <div class="flex justify-center mb-6">
-                <button id="setupRequestBtn" class="px-4 py-2 bg-blue-500 text-white">Demande de mise en place</button>
-                <button id="registrationBtn" class="px-4 py-2 bg-gray-200">Inscription</button>
-            </div>
-        
-            <form id="setupRequestForm">
-                <div class="mb-4">
-                    <label class="block text-gray-700">Nom de l'organisation</label>
-                    <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded" placeholder="Nom de l'organisation">
-                </div>
-                <div class="mb-4">
-                    <label class="block text-gray-700">Email</label>
-                    <input type="email" class="w-full px-3 py-2 border border-gray-300 rounded" placeholder="Email">
-                </div>
-                <div class="mb-4">
-                    <label class="block text-gray-700">Description</label>
-                    <textarea class="w-full px-3 py-2 border border-gray-300 rounded" placeholder="Description"></textarea>
-                </div>
-                <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded">Soumettre</button>
-            </form>
-
-            <form id="registrationForm" class="hidden">
-                <div class="mb-4">
-                    <label class="block text-gray-700">Nom</label>
-                    <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded" placeholder="Nom">
-                </div>
-                <div class="mb-4">
-                    <label class="block text-gray-700">Email</label>
-                    <input type="email" class="w-full px-3 py-2 border border-gray-300 rounded" placeholder="Email">
-                </div>
-                <div class="mb-4">
-                    <label class="block text-gray-700">Mot de passe</label>
-                    <input type="password" class="w-full px-3 py-2 border border-gray-300 rounded" placeholder="Mot de passe">
-                </div>
-                <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded">S'inscrire</button>
-            </form>
-        </div>
-
             <!-- Présentation de l'entreprise -->
             <section class="container mx-auto px-24 py-8">
                 <h1 class="text-3xl font-bold text-gray-800 mb-4">Parenthese Safe Space</h1>
