@@ -1,9 +1,38 @@
 
-
+.bg-custom {
+    background-image: url('../img/parenthese_logo.jpeg');
+}
 .bg-purple {
     background: #663B92;
 }
 
+.txt-purple {
+    color: #663B92;
+}
+
 .logo {
     width: 20%;
+}
+
+
+/* PERSONNALISER FORUM FOR CONTACT */
+
+.bg-gray-light {
+    background-color: #f3f4f6; 
+}
+.form-container {
+    display: flex;
+    justify-content: space-between;
+}
+.form-container .form {
+    width: 60%; 
+    margin-right: 7%; 
+}
+.form-container .image {
+    width: 35%; 
+    background-image: url('../img/event.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    margin-left: 1.5%; 
 }
