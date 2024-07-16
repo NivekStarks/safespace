@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+
+/*--Body-- Section2--*/
+
+.section2{
+    height: auto;
+	background: white;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+}
+
+/*--Body-- Section2--*/
+
+.section3{
+    height: auto;
+	background: #ededed;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+    padding: 70px 20px;
+}
+
+.section3 h3{
+    padding-bottom: 20px;
+}
+
+.text-color-cgu{
+	color: black;
+}
