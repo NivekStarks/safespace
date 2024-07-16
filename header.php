@@ -12,6 +12,7 @@
             <div class="hidden md:flex items-center space-x-4">
                 <a href="#" class="text-white hover:text-blue-500">Accueil</a>
                 <a href="#" class="text-white hover:text-blue-500">À propos</a>
+                <a href="devenez_benevole.php" class="text-white hover:text-blue-500">Espace bénévole</a>
             </div>
             <!-- Connexion Button -->
             <div>
