@@ -20,6 +20,7 @@
         <section class="container mx-auto h-screen">
             <img src="assets/img/safe.png" alt="">
             <div>
+                <a href="include/connexion.php" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">Connexion</a>
                 <h1 class="">Parenthèse - Safe Space Deaf</h1>
                 <div class="">sensibiliser, faire des ateliers, présenter notre stand pour prévenir tout type de violence qui peuvent arriver lors des évènements Sourds à Toulouse et en France.</div>
             </div>
