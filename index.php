@@ -17,6 +17,10 @@
 
         <!-- Accueil -->
 
+        <section class="bg-custom bg-cover bg-center mx-auto h-screen flex justify-evenly align-center items-center">
+            <div class="bg-gradient-to-r from-gray-500 rounded-lg py-8 px-6 w-3/4">
+                <h1 class="text-6xl text-white">Parenthèse - Safe Space Deaf</h1>
+                <div class="text-3xl text-white">sensibiliser, faire des ateliers, présenter notre stand pour prévenir tout type de violence qui peuvent arriver lors des évènements Sourds à Toulouse et en France.</div>
         <section class="container mx-auto h-screen">
             <img src="assets/img/safe.png" alt="">
             <div>
@@ -26,19 +30,31 @@
             </div>
         </section>
 
-
             <!-- Présentation de l'association -->
-            <section class="container mx-auto px-24 py-8">
-                <h1 class="text-3xl font-bold text-gray-800 mb-4">Parenthese Safe Space</h1>
-                <p class="text-gray-600 mb-8">
-                    Nous sommes une entreprise spécialisée dans la fourniture de services de haute qualité.
-                    Notre mission est de fournir des solutions innovantes et efficaces pour répondre aux besoins de nos clients.
-                </p>
-                <!-- Video YouTube -->
-                <div class="aspect-w-16 aspect-h-9">
-                    <iframe class="w-full h-full" src="https://www.youtube.com/watch?v=vwgDfiGBv6c" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <section class="container flex items-center mx-auto px-24 py-8 w-3/4">
+                <div class="left">
+                    <h1 class="text-3xl font-bold text-gray-800 mb-4">Qui sommes-nous ?</h1>
+                    <p class="text-gray-600 mb-8">
+                    Notre association est dédiée à la lutte contre les violences
+                    dans tous les événements, en particulier au sein de la
+                    communauté sourde. Nous nous engageons à sensibiliser,
+                    informer et soutenir les victimes, tout en promouvant un
+                    environnement respectueux et inclusif. À travers des actions
+                    concrètes et des formations, nous visons à prévenir les abus
+                    et à offrir un espace sûr pour tous. Notre équipe travaille en
+                    collaboration avec diverses organisations pour renforcer la
+                    solidarité et l’entraide. Ensemble, nous œuvrons pour un
+                    avenir où chacun peut participer librement et en toute
+                    sécurité. Rejoignez-nous dans cette mission essentielle !
+                    </p>
                 </div>
+                <img src="assets/img/safe.png" class="h-40" alt="">
             </section>
+            <div class="flex items-center justify-center mb-8">
+                <div class="pb-50-per h-1/2">
+                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/bxDlWTrdsyg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
 
             <!-- Formulaire de Contact -->
             <section class="container mx-auto px-4 py-8 bg-white shadow-lg rounded-lg">
