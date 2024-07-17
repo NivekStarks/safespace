@@ -2,10 +2,16 @@
 session_start();
 include_once('connection.php');
 
-$sqlQuery = 'SELECT * FROM administrateur';
-$prep = $mysqlClient->prepare($sqlQuery);
-$prep->execute();
-$administrateurs = $prep->fetchAll();
+// Fetching all administrators and volunteers
+$sqlQueryAdmin = 'SELECT * FROM administrateur';
+$prepAdmin = $mysqlClient->prepare($sqlQueryAdmin);
+$prepAdmin->execute();
+$administrateurs = $prepAdmin->fetchAll();
+
+$sqlQueryBenevole = 'SELECT * FROM benevole';
+$prepBenevole = $mysqlClient->prepare($sqlQueryBenevole);
+$prepBenevole->execute();
+$benevoles = $prepBenevole->fetchAll();
 
 $error_message = '';
 
@@ -14,20 +20,26 @@ if (!empty($_POST['MailCo']) && !empty($_POST['mot_passe'])) {
     $mot_passe = $_POST['mot_passe'];
     $_SESSION['GARDER'] = $mot_passe;
 
-    $userFound = false;
-
+    // Check for administrator credentials
     foreach ($administrateurs as $administrateur) {
         if ($administrateur['MailAdmin'] == $mail && $mot_passe == $administrateur['MDPAdmin']) {
             $_SESSION['LOGGED_USER'] = $mail;
-            $userFound = true;
-            header("Location: login.php");
+            header("Location: login.php"); // Redirect to admin page
             exit();
         }
     }
 
-    if (!$userFound) {
-        $error_message = 'Identifiant ou mot de passe incorrect.';
+    // Check for volunteer credentials
+    foreach ($benevoles as $benevole) {
+        if ($benevole['MailBenevole'] == $mail && $mot_passe == $benevole['MDPBenevole']) {
+            $_SESSION['LOGGED_USER'] = $mail;
+            header("Location: carte.php"); // Redirect to volunteer page
+            exit();
+        }
     }
+
+    // If no user found
+    $error_message = 'Identifiant ou mot de passe incorrect.';
 }
 ?>
 
@@ -64,11 +76,15 @@ if (!empty($_POST['MailCo']) && !empty($_POST['mot_passe'])) {
                 </label>
                 <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" name="mot_passe" type="password" placeholder="********" required>
             </div>
-            <div class="flex items-center justify-between">
-                <button class="bg-purple-700 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+            <div class="flex flex-col items-center">
+                <button class="bg-purple-700 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4" type="submit">
                     Se connecter
                 </button>
+                <a class="text-purple-700 hover:text-purple-800" href="../index.php">
+                    Accueil
+                </a>
             </div>
+
         </form>
     </div>
 </body>
