@@ -1,14 +1,4 @@
-<?php 
-// Database connection
-try {
-    $mysqlClient = new PDO('mysql:host=localhost;dbname=safespace;charset=utf8', 'root', 'root');
-} catch(Exception $e) {
-    die('Erreur : '.$e->getMessage());
-}
-?>
 
-<!DOCTYPE html>
-<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,30 +8,33 @@ try {
     <script src="assets/scripts/script.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
+
+
 <body class="bg-gray-100">
 
     <?php
-        include "include/header.php";
+    include "include/header.php";
 
-        // Check if the form is submitted
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $name = $_POST['name'];
-            $startDateTime = $_POST['startDateTime'];
-            $endDateTime = $_POST['endDateTime'];
-            $participants = $_POST['participants'];
-            $domain = $_POST['domain'];
-            $needs = $_POST['needs'];
+    // Check if the form is submitted
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $name = $_POST['name'];
+        $startDateTime = $_POST['startDateTime'];
+        $endDateTime = $_POST['endDateTime'];
+        $participants = $_POST['participants'];
+        $domain = $_POST['domain'];
+        $needs = $_POST['needs'];
 
-            // Prepare and execute the statement
-            $stmt = $mysqlClient->prepare("INSERT INTO events (name, startDateTime, endDateTime, participants, domain, needs) VALUES (?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$name, $startDateTime, $endDateTime, $participants, $domain, $needs]);
+        // Prepare and execute the statement
+        $stmt = $mysqlClient->prepare("INSERT INTO events (name, startDateTime, endDateTime, participants, domain, needs) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->execute([$name, $startDateTime, $endDateTime, $participants, $domain, $needs]);
 
-            if ($stmt) {
-                echo "<p class='text-green-500'>Nouvel enregistrement créé avec succès.</p>";
-            } else {
-                echo "<p class='text-red-500'>Erreur: " . $stmt->errorInfo()[2] . "</p>";
-            }
+        if ($stmt) {
+            echo "<p class='text-green-500'>Nouvel enregistrement créé avec succès.</p>";
+        } else {
+            echo "<p class='text-red-500'>Erreur: " . $stmt->errorInfo()[2] . "</p>";
         }
+    }
+  
     ?>
 
     <!-- Accueil -->
@@ -121,4 +114,7 @@ try {
     </footer>
 
 </body>
+
+
 </html>
+
