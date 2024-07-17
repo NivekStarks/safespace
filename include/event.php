@@ -1,39 +1,16 @@
 <?php
-
 // Connexion à la base de données
 require('include/connection.php');
 
-// Vérification de la connexion à la base de données
-if (!$conn) {
-    die("Échec de la connexion à la base de données: " . mysqli_connect_error());
-}
-echo "Connexion réussie à la base de données<br>";
-
 // Sélectionner toutes les soumissions de formulaire
-$query = "SELECT * FROM contact_form ORDER BY id DESC"; // Assurez-vous que 'id' est votre clé primaire
-$result = mysqli_query($conn, $query);
+$query = "SELECT * FROM events ORDER BY id DESC";
+$result = $mysqlClient->query($query);
 
 // Vérification de l'exécution de la requête
 if (!$result) {
-    die("Erreur lors de la récupération des données: " . mysqli_error($conn));
+    die("Erreur lors de la récupération des données: " . $mysqlClient->errorInfo()[2]);
 }
-
-// Vérifier s'il y a des résultats
-if (mysqli_num_rows($result) > 0) {
-    echo "Nombre de soumissions de formulaire trouvées: " . mysqli_num_rows($result) . "<br>";
-} else {
-    echo "Aucune soumission de formulaire trouvée<br>";
-}
-
-// Libérer le résultat de la mémoire
-mysqli_free_result($result);
-
-// Fermer la connexion à la base de données
-mysqli_close($conn);
-
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -59,7 +36,7 @@ mysqli_close($conn);
             </tr>
         </thead>
         <tbody>
-            <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+            <?php while ($row = $result->fetch(PDO::FETCH_ASSOC)) { ?>
                 <tr>
                     <td><?php echo htmlspecialchars($row['name']); ?></td>
                     <td><?php echo htmlspecialchars($row['startDateTime']); ?></td>
@@ -71,14 +48,6 @@ mysqli_close($conn);
             <?php } ?>
         </tbody>
     </table>
-
-    <?php
-    // Libérer le résultat de la mémoire
-    mysqli_free_result($result);
-
-    // Fermer la connexion à la base de données
-    mysqli_close($conn);
-    ?>
 </body>
 
 </html>
