@@ -56,7 +56,7 @@
         <div class="image"></div>
         <div class="form">
             <h2 class="text-2xl font-bold text-gray-800 mb-4">NOUS CONTACTER</h2>
-            <form action="#" method="POST" class="space-y-4">
+            <form action="#" method="POST" class="space-y-4" id="contact">
                 <!-- Titre de l'évènement -->
                 <div>
                     <label for="name" class="block text-gray-600">Titre de l'évènement</label>
