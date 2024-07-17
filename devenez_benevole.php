@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Devenez un bénévole !</title>
+    <script src="https://kit.fontawesome.com/e3fa649643.js" crossorigin="anonymous"></script>
     <link rel="shortcut icon" href="assets/img/parenthese_logo.jpeg" type="image/x-icon">
     <link rel="stylesheet" href="assets/styles/style.css">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
@@ -141,8 +142,9 @@
             </div>
         </form>
     </section>
-
-
+    <?php
+        include "include/footer.php";
+    ?>
 </body>
 
 </html>
