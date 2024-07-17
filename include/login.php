@@ -60,9 +60,7 @@ if (!empty($_POST['MailCo']) && !empty($_POST['mot_passe'])) {
                 <button class="w-full py-2 bg-red-600 text-white rounded" type="submit">
                     <a href="deconnexion.php">Déconnexion</a>
                 </button>
-                <button class="w-full py-2 bg-red-600 text-white rounded" type="submit">
-                    <a href="event.php">Event - develop</a>
-                </button>
+
             </form>
         <?php else: ?>
             <h1 class="text-2xl font-bold text-purple-700 mb-4">ERREUR, IL SEMBLE QUE VOUS NE SOYEZ PAS CONNECTÉ</h1>
