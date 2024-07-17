@@ -1,3 +1,5 @@
+
+
 <?php
 session_start();
 include_once('connection.php');
@@ -64,11 +66,15 @@ if (!empty($_POST['MailCo']) && !empty($_POST['mot_passe'])) {
                 </label>
                 <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" name="mot_passe" type="password" placeholder="********" required>
             </div>
-            <div class="flex items-center justify-between">
-                <button class="bg-purple-700 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+            <div class="flex flex-col items-center">
+                <button class="bg-purple-700 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4" type="submit">
                     Se connecter
                 </button>
+                <a class="text-purple-700 hover:text-purple-800" href="../index.php">
+                    Accueil
+                </a>
             </div>
+
         </form>
     </div>
 </body>
