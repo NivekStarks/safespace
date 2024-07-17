@@ -20,26 +20,40 @@ if (!empty($_POST['MailCo']) && !empty($_POST['mot_passe'])) {
     $mot_passe = $_POST['mot_passe'];
     $_SESSION['GARDER'] = $mot_passe;
 
+    $user_found = false;
+
     // Check for administrator credentials
     foreach ($administrateurs as $administrateur) {
-        if ($administrateur['MailAdmin'] == $mail && $mot_passe == $administrateur['MDPAdmin']) {
-            $_SESSION['LOGGED_USER'] = $mail;
-            header("Location: login.php"); // Redirect to admin page
-            exit();
+        if ($administrateur['MailAdmin'] == $mail) {
+            $user_found = true;
+            if ($mot_passe == $administrateur['MDPAdmin']) {
+                $_SESSION['LOGGED_USER'] = $mail;
+                header("Location: login.php"); // Redirect to admin page
+                exit();
+            } else {
+                $error_message = 'Identifiant ou mot de passe incorrect.';
+            }
         }
     }
 
     // Check for volunteer credentials
     foreach ($benevoles as $benevole) {
-        if ($benevole['MailBenevole'] == $mail && $mot_passe == $benevole['MDPBenevole']) {
-            $_SESSION['LOGGED_USER'] = $mail;
-            header("Location: carte.php"); // Redirect to volunteer page
-            exit();
+        if ($benevole['MailBenevole'] == $mail) {
+            $user_found = true;
+            if ($mot_passe == $benevole['MDPBenevole']) {
+                $_SESSION['LOGGED_USER'] = $mail;
+                header("Location: carte.php"); // Redirect to volunteer page
+                exit();
+            } else {
+                $error_message = 'Identifiant ou mot de passe incorrect.';
+            }
         }
     }
 
     // If no user found
-    $error_message = 'Identifiant ou mot de passe incorrect.';
+    if (!$user_found) {
+        $error_message = 'Veuillez contacter l\'administrateur du site.';
+    }
 }
 ?>
 
