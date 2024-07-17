@@ -15,24 +15,38 @@
 }
 
 
-/* PERSONNALISER FORUM FOR CONTACT */
-
 .bg-gray-light {
     background-color: #f3f4f6; 
 }
+
 .form-container {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
+
 .form-container .form {
-    width: 60%; 
-    margin-right: 7%; 
+    width: 50%;
+    padding-right: 2%;
 }
+
 .form-container .image {
-    width: 35%; 
-    background-image: url('../img/event.jpg');
+    width: 50%;
+    height: 100%;
+    background-image: url('../img/event.jpg'); 
     background-size: cover;
     background-position: center;
     border-radius: 10px;
-    margin-left: 1.5%; 
+}
+
+.form_place {
+    margin-top: 10em !important;
+}
+
+h2 {
+    text-align: center;
+}
+
+button {
+    background-color: #4a4a4a; 
 }

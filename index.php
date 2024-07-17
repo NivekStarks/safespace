@@ -21,12 +21,6 @@
             <div class="bg-gradient-to-r from-gray-500 rounded-lg py-8 px-6 w-3/4">
                 <h1 class="text-6xl text-white">Parenthèse - Safe Space Deaf</h1>
                 <div class="text-3xl text-white">sensibiliser, faire des ateliers, présenter notre stand pour prévenir tout type de violence qui peuvent arriver lors des évènements Sourds à Toulouse et en France.</div>
-        <section class="container mx-auto h-screen">
-            <img src="assets/img/safe.png" alt="">
-            <div>
-                <a href="include/connexion.php" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">Connexion</a>
-                <h1 class="">Parenthèse - Safe Space Deaf</h1>
-                <div class="">sensibiliser, faire des ateliers, présenter notre stand pour prévenir tout type de violence qui peuvent arriver lors des évènements Sourds à Toulouse et en France.</div>
             </div>
         </section>
 
@@ -57,57 +51,57 @@
             </div>
 
             <!-- Formulaire de Contact -->
-            <section class="container mx-auto px-4 py-8 bg-white shadow-lg rounded-lg">
-        <h2 class="text-2xl font-bold text-gray-800 mb-4">Contactez-nous pour une mise en place d'un safe space</h2>
-        <div class="form-container">
-            <div class="image"></div>
-            <div class="form">
-                <form action="#" method="POST" class="space-y-4">
-                    
-                    <!-- Titre de l'évènement -->
-                    <div>
-                        <label for="name" class="block text-gray-600">Titre de l'évènement :</label>
-                        <input type="text" id="name" name="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                    </div>
-                    
-                    <!-- Date et Heure de début -->
-                    <div>
-                        <label for="startDateTime" class="block text-gray-600">Date et Heure de début :</label>
-                        <input type="datetime-local" id="startDateTime" name="startDateTime" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                    </div>
-                    
-                    <!-- Date et Heure de fin -->
-                    <div>
-                        <label for="endDateTime" class="block text-gray-600">Date et Heure de fin :</label>
-                        <input type="datetime-local" id="endDateTime" name="endDateTime" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                    </div>
-                    
-                    <!-- Nombre de participants -->
-                    <div>
-                        <label for="participants" class="block text-gray-600">Nombre prévu de participants :</label>
-                        <input type="number" id="participants" name="participants" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                    </div>
-                    
-                    <!-- Domaine -->
-                    <div>
-                        <label for="domain" class="block text-gray-600">Domaine :</label>
-                        <input type="text" id="domain" name="domain" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                    </div>
-                    
-                    <!-- Votre besoin -->
-                    <div>
-                        <label for="needs" class="block text-gray-600">Votre besoin :</label>
-                        <textarea id="needs" name="needs" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
-                    </div>
-                    
-                    <!-- Bouton Envoyer -->
-                    <div>
-                        <button type="submit" class="w-full px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">Envoyer</button>
-                    </div>
-                </form>
-            </div>
+            <section class="container mx-auto px-4 py-8 bg-white shadow-lg rounded-lg form_place">
+    <div class="form-container">
+        <div class="image"></div>
+        <div class="form">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">NOUS CONTACTER</h2>
+            <form action="#" method="POST" class="space-y-4" id="contact">
+                <!-- Titre de l'évènement -->
+                <div>
+                    <label for="name" class="block text-gray-600">Titre de l'évènement</label>
+                    <input type="text" id="name" name="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+                
+                <!-- Date et Heure de début -->
+                <div>
+                    <label for="startDateTime" class="block text-gray-600">Date Heure début de l'évènement</label>
+                    <input type="datetime-local" id="startDateTime" name="startDateTime" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+                
+                <!-- Date et Heure de fin -->
+                <div>
+                    <label for="endDateTime" class="block text-gray-600">Date Heure de fin de l'évènement</label>
+                    <input type="datetime-local" id="endDateTime" name="endDateTime" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+                
+                <!-- Nombre de participants -->
+                <div>
+                    <label for="participants" class="block text-gray-600">Nombre prévu de participants</label>
+                    <input type="number" id="participants" name="participants" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+                
+                <!-- Domaine -->
+                <div>
+                    <label for="domain" class="block text-gray-600">Domaine</label>
+                    <input type="text" id="domain" name="domain" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+                
+                <!-- Votre besoin -->
+                <div>
+                    <label for="needs" class="block text-gray-600">Votre besoin</label>
+                    <textarea id="needs" name="needs" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
+                </div>
+                
+                <!-- Bouton Envoyer -->
+                <div>
+                    <button type="submit" class="w-full px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">Envoyer</button>
+                </div>
+            </form>
         </div>
-    </section>
+    </div>
+</section>
+
 
     
 
