@@ -1,3 +1,58 @@
+<?php
+include_once("include/connection.php");
+
+session_start(); // Ensure session is started at the top
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve form data
+    $nom = $_POST['nom'] ?? '';
+    $prenom = $_POST['prenom'] ?? '';
+    $email = $_POST['email'] ?? '';
+    $profil = $_POST['profil'] ?? '';
+    $adresse = $_POST['adresse'] ?? '';
+    $code_postal = $_POST['code_postal'] ?? '';
+    $ville = $_POST['ville'] ?? '';
+    $choix_formation = $_POST['choix_formation'] ?? '';
+    $lieu_formation = $_POST['lieu_formation'] ?? '';
+    $participants = $_POST['participants'] ?? '';
+    $description_besoin = $_POST['description_besoin'] ?? '';
+    $numero_siret = isset($_POST['numero_siret']) && is_numeric($_POST['numero_siret']) ? $_POST['numero_siret'] : NULL;
+    $numero_rna = isset($_POST['numero_rna']) && is_numeric($_POST['numero_rna']) ? $_POST['numero_rna'] : NULL;
+
+    // Prepare the SQL statement
+    $sql = "INSERT INTO candidaturebenevole (nom, prenom, mail, profile, adresse, postale, ville, formation, lieu_form, nbr_form, description, numero_siret, numero_rna)
+            VALUES (:nom, :prenom, :email, :profil, :adresse, :code_postal, :ville, :choix_formation, :lieu_formation, :participants, :description_besoin, :numero_siret, :numero_rna)";
+
+    $stmt = $mysqlClient->prepare($sql);
+
+    // Bind parameters
+    $stmt->bindParam(':nom', $nom);
+    $stmt->bindParam(':prenom', $prenom);
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':profil', $profil);
+    $stmt->bindParam(':adresse', $adresse);
+    $stmt->bindParam(':code_postal', $code_postal);
+    $stmt->bindParam(':ville', $ville);
+    $stmt->bindParam(':choix_formation', $choix_formation);
+    $stmt->bindParam(':lieu_formation', $lieu_formation);
+    $stmt->bindParam(':participants', $participants);
+    $stmt->bindParam(':description_besoin', $description_besoin);
+    $stmt->bindParam(':numero_siret', $numero_siret, PDO::PARAM_INT);
+    $stmt->bindParam(':numero_rna', $numero_rna, PDO::PARAM_INT);
+
+    // Execute the statement
+    if ($stmt->execute()) {
+        $_SESSION['message'] = "<div class='bg-green-500 text-white p-4 rounded-lg'>Votre candidature a été envoyée avec succès!</div>";
+    } else {
+        $_SESSION['message'] = "<div class='bg-red-500 text-white p-4 rounded-lg'>Erreur lors de l'envoi de la candidature.</div>";
+    }
+
+    // Redirect to the same page to avoid resubmission
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -15,16 +70,23 @@
             document.getElementById('rna-field').style.display = profil === 'association' ? 'block' : 'none';
         }
 
-        window.onload = function() {
+        window.onload = function () {
             toggleFields();
         };
     </script>
 </head>
 
 <body class="bg-gray-100">
-    <?php
-    include "include/header.php";
-    ?>
+    <?php include "include/header.php"; ?>
+
+    <?php if (isset($_SESSION['message'])): ?>
+        <div class="container mx-auto p-4">
+            <?php
+            echo $_SESSION['message'];
+            unset($_SESSION['message']); // Clear the message after displaying
+            ?>
+        </div>
+    <?php endif; ?>
 
     <section class="container flex flex-col items-center mx-auto px-24 py-8 w-3/4 form_place">
         <h1 class="text-3xl font-bold text-gray-800 mb-4 self-start">Devenez Bénévole et Faites la Différence !</h1>
@@ -32,69 +94,49 @@
     </section>
 
     <section class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md form_place">
-
         <h2 class="text-2xl font-bold text-gray-800 mb-4">Candidature bénévole</h2>
 
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" class="space-y-4">
-            <!-- NOM -->
             <div>
                 <label for="nom" class="block text-gray-600">Nom :</label>
                 <input type="text" id="nom" name="nom" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
             </div>
-
-            <!-- PRENOM -->
             <div>
                 <label for="prenom" class="block text-gray-600">Prénom :</label>
                 <input type="text" id="prenom" name="prenom" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
             </div>
-
-            <!-- EMAIL -->
             <div>
                 <label for="email" class="block text-gray-600">Adresse mail :</label>
                 <input type="email" id="email" name="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
             </div>
-
-            <!-- PROFIL -->
             <div>
                 <label for="profil" class="block text-gray-600">Profil :</label>
                 <select id="profil" name="profil" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" onchange="toggleFields()" required>
-                    <option value="particulier" <?php echo (isset($_POST['profil']) && $_POST['profil'] == 'particulier') ? 'selected' : ''; ?>>Particulier</option>
-                    <option value="association" <?php echo (isset($_POST['profil']) && $_POST['profil'] == 'association') ? 'selected' : ''; ?>>Association</option>
-                    <option value="entreprise" <?php echo (isset($_POST['profil']) && $_POST['profil'] == 'entreprise') ? 'selected' : ''; ?>>Entreprise</option>
+                    <option value="particulier">Particulier</option>
+                    <option value="association">Association</option>
+                    <option value="entreprise">Entreprise</option>
                 </select>
             </div>
-
-            <!-- SIRET -->
             <div id="siret-field" style="display:none;">
                 <label for="numero_siret" class="block text-gray-600">Numéro SIRET :</label>
                 <input type="text" id="numero_siret" name="numero_siret" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
-
-            <!-- RNA -->
             <div id="rna-field" style="display:none;">
                 <label for="numero_rna" class="block text-gray-600">Numéro RNA :</label>
                 <input type="text" id="numero_rna" name="numero_rna" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
-
-            <!-- ADRESSE POSTALE -->
             <div>
                 <label for="adresse" class="block text-gray-600">Adresse postale :</label>
                 <input type="text" id="adresse" name="adresse" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
             </div>
-
-            <!-- CODE POSTAL -->
             <div>
                 <label for="code_postal" class="block text-gray-600">Code postal :</label>
                 <input type="text" id="code_postal" name="code_postal" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
             </div>
-
-            <!-- VILLE -->
             <div>
                 <label for="ville" class="block text-gray-600">Ville :</label>
                 <input type="text" id="ville" name="ville" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
             </div>
-
-            <!-- CHOIX DE LA FORMATION -->
             <div>
                 <label class="block text-gray-600">Choix de la formation :</label>
                 <div class="mt-2">
@@ -108,39 +150,22 @@
                     </label>
                 </div>
             </div>
-
-            <!-- LIEU DE LA FORMATION -->
             <div>
                 <label for="lieu_formation" class="block text-gray-600">Lieu de la formation :</label>
                 <input type="text" id="lieu_formation" name="lieu_formation" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
             </div>
-
-            <!-- NOMBRE DE PARTICIPANTS -->
             <div>
                 <label for="participants" class="block text-gray-600">Nombre de participants :</label>
                 <input type="number" id="participants" name="participants" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
             </div>
-
-            <!-- CONTEXTE DE LA DEMANDE -->
-            <?php if (isset($_POST['choix_formation']) && $_POST['choix_formation'] == 'autre') : ?>
-                <div>
-                    <label for="contexte_demande" class="block text-gray-600">Contexte de la demande :</label>
-                    <textarea id="contexte_demande" name="contexte_demande" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
-                </div>
-            <?php endif; ?>
-
-            <!-- DESCRIPTION DU BESOIN -->
             <div>
                 <label for="description_besoin" class="block text-gray-600">Description du besoin :</label>
                 <textarea id="description_besoin" name="description_besoin" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
             </div>
-
-            <!-- BOUTON -->
             <div>
                 <button type="submit" class="w-full px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">Envoyer</button>
             </div>
         </form>
     </section>
 </body>
-
 </html>

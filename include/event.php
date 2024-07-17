@@ -1,6 +1,6 @@
 <?php
 // Connexion à la base de données
-require('include/connection.php');
+require('connection.php');
 
 // Sélectionner toutes les soumissions de formulaire
 $query = "SELECT * FROM events ORDER BY id DESC";
