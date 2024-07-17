@@ -16,7 +16,7 @@
             </div>
             <!-- Connexion Button -->
             <div>
-                <a href="connexion.php" class="px-4 py-2 bg-white text-purple rounded hover:bg-purple-800 hover:text-white">Connexion</a>
+                <a href="include/connexion.php" class="px-4 py-2 bg-white text-purple rounded hover:bg-purple-800 hover:text-white">Connexion</a>
             </div>
         </div>
     </div>

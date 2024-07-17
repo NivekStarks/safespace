@@ -3,7 +3,7 @@
 try
 {
 	// On se connecte à MySQL
-	$mysqlClient = new PDO('mysql:host=localhost;dbname=safespace;charset=utf8', 'root', 'root');
+	$mysqlClient = new PDO('mysql:host=localhost;dbname=safespace;charset=utf8', 'root', '');
 
 }
 
