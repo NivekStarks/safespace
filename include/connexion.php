@@ -1,13 +1,17 @@
-
-
 <?php
 session_start();
 include_once('connection.php');
 
-$sqlQuery = 'SELECT * FROM administrateur';
-$prep = $mysqlClient->prepare($sqlQuery);
-$prep->execute();
-$administrateurs = $prep->fetchAll();
+// Fetching all administrators and volunteers
+$sqlQueryAdmin = 'SELECT * FROM administrateur';
+$prepAdmin = $mysqlClient->prepare($sqlQueryAdmin);
+$prepAdmin->execute();
+$administrateurs = $prepAdmin->fetchAll();
+
+$sqlQueryBenevole = 'SELECT * FROM benevole';
+$prepBenevole = $mysqlClient->prepare($sqlQueryBenevole);
+$prepBenevole->execute();
+$benevoles = $prepBenevole->fetchAll();
 
 $error_message = '';
 
@@ -16,20 +20,26 @@ if (!empty($_POST['MailCo']) && !empty($_POST['mot_passe'])) {
     $mot_passe = $_POST['mot_passe'];
     $_SESSION['GARDER'] = $mot_passe;
 
-    $userFound = false;
-
+    // Check for administrator credentials
     foreach ($administrateurs as $administrateur) {
         if ($administrateur['MailAdmin'] == $mail && $mot_passe == $administrateur['MDPAdmin']) {
             $_SESSION['LOGGED_USER'] = $mail;
-            $userFound = true;
-            header("Location: login.php");
+            header("Location: login.php"); // Redirect to admin page
             exit();
         }
     }
 
-    if (!$userFound) {
-        $error_message = 'Identifiant ou mot de passe incorrect.';
+    // Check for volunteer credentials
+    foreach ($benevoles as $benevole) {
+        if ($benevole['MailBenevole'] == $mail && $mot_passe == $benevole['MDPBenevole']) {
+            $_SESSION['LOGGED_USER'] = $mail;
+            header("Location: carte.php"); // Redirect to volunteer page
+            exit();
+        }
     }
+
+    // If no user found
+    $error_message = 'Identifiant ou mot de passe incorrect.';
 }
 ?>
 
