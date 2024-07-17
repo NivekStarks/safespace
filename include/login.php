@@ -40,7 +40,7 @@ if (!empty($_POST['MailCo']) && !empty($_POST['mot_passe'])) {
             <p class="mb-6">Vous êtes : <?php echo $_SESSION['LOGGED_USER']; ?></p>
             <form>
                 <button class="w-full mb-3 py-2 bg-purple-700 text-white rounded" type="submit">
-                    <a href="AddOffre.php">Ajouter une offre d'emploi</a>
+                    <a href="safespace.php">Gestion de SAFE SPACE</a>
                 </button>
                 <button class="w-full mb-3 py-2 bg-purple-700 text-white rounded" type="submit">
                     <a href="DeleteOffre.php">Supprimer une offre d'emploi</a>
