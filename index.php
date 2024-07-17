@@ -12,7 +12,7 @@
     <body class="bg-gray-100">
 
         <?php
-            include "header.php";
+            include "include/header.php";
         ?>
 
         <!-- Accueil -->
@@ -21,6 +21,12 @@
             <div class="bg-gradient-to-r from-gray-500 rounded-lg py-8 px-6 w-3/4">
                 <h1 class="text-6xl text-white">Parenthèse - Safe Space Deaf</h1>
                 <div class="text-3xl text-white">sensibiliser, faire des ateliers, présenter notre stand pour prévenir tout type de violence qui peuvent arriver lors des évènements Sourds à Toulouse et en France.</div>
+        <section class="container mx-auto h-screen">
+            <img src="assets/img/safe.png" alt="">
+            <div>
+                <a href="include/connexion.php" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">Connexion</a>
+                <h1 class="">Parenthèse - Safe Space Deaf</h1>
+                <div class="">sensibiliser, faire des ateliers, présenter notre stand pour prévenir tout type de violence qui peuvent arriver lors des évènements Sourds à Toulouse et en France.</div>
             </div>
         </section>
 

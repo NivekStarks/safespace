@@ -10,8 +10,8 @@
 </head>
 <body class="bg-gray-100">
     <?php
-        include "header.php";
-    ?>
+            include "include/header.php";
+            ?>
 
     <section>
         <h1 class="text-2xl font-bold text-gray-800 mb-4">Devenez Bénévole et Faites la Différence !</h1>
