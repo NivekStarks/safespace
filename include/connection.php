@@ -16,17 +16,17 @@ catch(Exception $e)
 ?>
 <?php 
 
-try
-{
-	// On se connecte à MySQL
-	$mysqlClient = new PDO('mysql:host=localhost;dbname=safespace;charset=utf8', 'root', '');
+// try
+// {
+// 	// On se connecte à MySQL
+// 	$mysqlClient = new PDO('mysql:host=localhost;dbname=safespace;charset=utf8', 'root', '');
 
-}
+// }
 
-catch(Exception $e)
-{
-	// En cas d'erreur, on affiche un message et on arrête tout
-        die('Erreur : '.$e->getMessage());
-}
+// catch(Exception $e)
+// {
+// 	// En cas d'erreur, on affiche un message et on arrête tout
+//         die('Erreur : '.$e->getMessage());
+// }
 
-?>
+// ?>
