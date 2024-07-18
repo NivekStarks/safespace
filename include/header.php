@@ -1,4 +1,4 @@
-<header class="bg-purple text-white">
+<header class="bg-purple dark:bg-gray-900 text-white">
     <div class="container mx-auto flex justify-between items-center py-4 px-6">
       <!-- Logo -->
       <div class="flex-shrink-0">
@@ -11,7 +11,7 @@
         <a href="index.php#contact" class="text-lg hover:text-gray-400">Contact</a>
       </nav>
 
-      <div class="mt-5 flex items-center justify-center">
+      <div class="flex items-center justify-center">
         <button
           title="Toggle Theme"
           onclick="changeTheme()"
@@ -19,8 +19,9 @@
         >
           <div
             id="toggle"
-            class="rounded-full w-4 h-4 bg-blue-600 dark:bg-blue-500 relative ml-0 dark:ml-6 pointer-events-none transition-all duration-300 ease-out"
-          ></div>
+            class="rounded-full w-4 h-4 bg-blue-600 dark:bg-blue-500 relative ml-0 dark:ml-6 pointer-events-none transition-all duration-300 ease-out flex items-center"
+          >
+          <i class="fa-solid fa-circle-half-stroke"></i></div>
         </button>
       </div>
       <!-- Button -->

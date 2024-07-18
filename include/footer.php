@@ -1,7 +1,7 @@
 <!-- FOOTER -->
 
 <!-- Footer -->
-<footer class="bg-gray-800 text-white py-8 px-6 md:px-24">
+<footer class="bg-gray-800 text-white dark:bg-gray-900 py-8 px-6 md:px-24">
     <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row justify-between items-center">
             <!-- Colonne de gauche -->

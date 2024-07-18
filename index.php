@@ -8,13 +8,20 @@ include_once('include/connection.php');
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Page de Présentation</title>
         <script src="https://kit.fontawesome.com/e3fa649643.js" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
         <link rel="shortcut icon" href="assets/img/parenthese_logo.jpeg" type="image/x-icon">
         <link rel="stylesheet" href="assets/styles/output.css">
-        <link rel="stylesheet" href="assets/styles/style.css">
-        <script src="assets/scripts/script.js"></script>
+        <script src="assets/scripts/script.js"></script>        
+		<script type="text/javascript" src="assets/scripts/jquery.zoomooz-helpers.js"></script>
+		<script type="text/javascript" src="assets/scripts/jquery.zoomooz-anim.js"></script>
+		<script type="text/javascript" src="assets/scripts/jquery.zoomooz-core.js"></script>
+		<script type="text/javascript" src="assets/scripts/purecssmatrix.js"></script>
+		<script type="text/javascript" src="assets/scripts/sylvester.src.stripped.js"></script>
+		<script type="text/javascript" src="assets/scripts/jquery.zoomooz-zoomTarget.js"></script>
+		<script type="text/javascript" src="assets/scripts/jquery.zoomooz-zoomContainer.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     </head>
-    <body class="bg-gray-100">
+    <body class="bg-gray-100 dark:bg-gray-900">
 
     <?php
     include "include/header.php";
@@ -113,26 +120,67 @@ include_once('include/connection.php');
     </section>
 
     <!-- Présentation de l'association -->
-    <section class="container flex flex-col md:flex-row items-center w-full md:w-9/12 mx-auto md:mx-44">
-        <div class="left w-full md:w-6/12 p-4 md:p-0">
-            <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">Présentation de l'Association</h1>
-            <p class="text-gray-600 mb-8">Notre association est dédiée à la lutte contre les violences dans tous les événements, en particulier au sein de la communauté sourde. Nous nous engageons à sensibiliser, informer et soutenir les victimes, tout en promouvant un environnement respectueux et inclusif. À travers des actions concrètes et des formations, nous visons à prévenir les abus et à offrir un espace sûr pour tous. Notre équipe travaille en collaboration avec diverses organisations pour renforcer la solidarité et l’entraide. Ensemble, nous œuvrons pour un avenir où chacun peut participer librement et en toute sécurité. Rejoignez-nous dans cette mission essentielle !</p>
+    <section class="container flex items-center dark:bg-gray-900 dark:text-white mx-auto px-24 py-8 w-3/4">
+        <div class="left">
+            <h1 class="text-3xl font-bold dark:bg-gray-900 text-gray-800 mb-4 zoom-target">Qui sommes-nous ?</h1>
+            <p class="dark:bg-gray-900 text-gray-600 mb-8 zoom-target">
+                Notre association est dédiée à la lutte contre les violences
+                dans tous les événements, en particulier au sein de la
+                communauté sourde. Nous nous engageons à sensibiliser,
+                informer et soutenir les victimes, tout en promouvant un
+                environnement respectueux et inclusif. À travers des actions
+                concrètes et des formations, nous visons à prévenir les abus
+                et à offrir un espace sûr pour tous. Notre équipe travaille en
+                collaboration avec diverses organisations pour renforcer la
+                solidarité et l’entraide. Ensemble, nous œuvrons pour un
+                avenir où chacun peut participer librement et en toute
+                sécurité. Rejoignez-nous dans cette mission essentielle !
+            </p>
             <div class="w-full max-w-md p-4">
                 <label for="zoomRange" class="block text-lg font-medium text-gray-700 dark:text-gray-300">Zoom global :</label>
                 <input id="zoomRange" type="range" min="1" max="3" step="0.1" value="1" class="w-full mt-2">
             </div>
         </div>
-        <div class="image-présentation w-full md:w-6/12 flex justify-center md:justify-end p-4 md:p-0">
-            <img src="assets/img/safe.png" class="h-auto w-full md:w-10/12" alt="Présentation Image">
-        </div>
+        <img src="assets/img/safe.png" class="h-40" alt="">
     </section>
+    <div class="bg-white dark:bg-gray-900 text-black dark:text-white">
+        <div class="min-h-screen flex flex-col items-center justify-center space-y-6">
+            <div class="w-full max-w-md p-4">
+                <label for="zoomRange" class="block text-lg font-medium text-gray-700 dark:text-gray-300">Zoom global :</label>
+                <input id="zoomRange" type="range" min="1" max="3" step="0.1" value="1" class="w-full mt-2">
+            </div>
 
-    <div class="video-container mx-auto px-4 md:px-44">
-        <div class="relative h-0 overflow-hidden" style="padding-bottom: 56.25%;">
-            <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/bxDlWTrdsyg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <h1 class="text-3xl font-bold dark:bg-gray-900 text-gray-800 mb-4 zoom-target">Qui sommes-nous ?</h1>
+            <p class="dark:bg-gray-900 text-gray-600 mb-8 zoom-target">
+                Notre association est dédiée à la lutte contre les violences
+                dans tous les événements, en particulier au sein de la
+                communauté sourde. Nous nous engageons à sensibiliser,
+                informer et soutenir les victimes, tout en promouvant un
+                environnement respectueux et inclusif. À travers des actions
+                concrètes et des formations, nous visons à prévenir les abus
+                et à offrir un espace sûr pour tous. Notre équipe travaille en
+                collaboration avec diverses organisations pour renforcer la
+                solidarité et l’entraide. Ensemble, nous œuvrons pour un
+                avenir où chacun peut participer librement et en toute
+                sécurité. Rejoignez-nous dans cette mission essentielle !
+            </p>
+            <div class="w-full max-w-md p-4 bg-gray-100 dark:bg-gray-800 rounded zoom-target">
+                <p>Ceci est un exemple de texte que vous pouvez zoomer pour améliorer l'accessibilité.</p>
+            </div>
+            <div class="w-full max-w-md p-4 bg-gray-200 dark:bg-gray-700 rounded zoom-target">
+                <p>Voici un autre exemple de texte pour tester le zoom sur une zone spécifique.</p>
+            </div>
         </div>
     </div>
-</div>
+
+
+    <div class="flex justify-center items-center">
+        <div class="w-3/4">
+            <div class="relative" style="height:500px">
+                <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/bxDlWTrdsyg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
 
 <!-- TEST -->
 <section class="container mx-auto px-4 py-8 bg-white shadow-lg rounded-lg my-6">
