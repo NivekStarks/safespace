@@ -12,8 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mail = $_POST['mail'];
     
     if (isset($_POST['validate'])) {
-        // Redirect to newBenevole.php
-        header("Location: newBenevole.php");
+        // Redirect to newBenevole.php with email as a GET parameter
+        header("Location: newBenevole.php?email_new=" . urlencode($mail));
         exit();
     } elseif (isset($_POST['refuse'])) {
         // Refuse candidate
