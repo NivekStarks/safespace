@@ -108,9 +108,9 @@ if (!$result) {
             <thead>
                 <tr class="bg-purple-600 text-white">
                     <th class="py-2 px-4 border-b">Nom de l'événement</th>
+                    <th class="py-2 px-4 border-b">Email</th>
                     <th class="py-2 px-4 border-b">Date Heure début</th>
                     <th class="py-2 px-4 border-b">Date Heure fin</th>
-                    <th class="py-2 px-4 border-b">Lieu</th>
                     <th class="py-2 px-4 border-b">Participants</th>
                     <th class="py-2 px-4 border-b">Domaine</th>
                     <th class="py-2 px-4 border-b">Besoin</th>
@@ -121,9 +121,9 @@ if (!$result) {
                 <?php while ($row = $result->fetch(PDO::FETCH_ASSOC)) { ?>
                     <tr class="hover:bg-gray-100">
                         <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['name']); ?></td>
+                        <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['email']); ?></td>
                         <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['startDateTime']); ?></td>
                         <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['endDateTime']); ?></td>
-                        <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['LIEU']); ?></td>
                         <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['participants']); ?></td>
                         <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['domain']); ?></td>
                         <td class="py-2 px-4 border-b">

@@ -30,10 +30,11 @@ include_once('include/connection.php');
         $domain = $_POST['domain'];
         $needs = $_POST['needs'];
         $lieu = $_POST['LIEU'];
+        $lieu = $_POST['email'];
 
         // Prepare and execute the statement
-        $stmt = $mysqlClient->prepare("INSERT INTO events (name, startDateTime, endDateTime, participants, domain, needs,LIEU) VALUES (?, ?, ?, ?, ?, ?,?)");
-        $stmt->execute([$name, $startDateTime, $endDateTime, $participants, $domain, $needs,$lieu]);
+        $stmt = $mysqlClient->prepare("INSERT INTO events (name, startDateTime, endDateTime, participants, domain, needs,LIEU, email) VALUES (?, ?, ?, ?, ?, ?,?, ?)");
+        $stmt->execute([$name, $startDateTime, $endDateTime, $participants, $domain, $needs,$lieu, $email]);
 
         if ($stmt) {
             echo "<p class='text-green-500'>Nouvel enregistrement créé avec succès.</p>";
@@ -237,6 +238,11 @@ include_once('include/connection.php');
                     <div>
                         <label for="name" class="block text-gray-600">Titre de l'évènement</label>
                         <input type="text" id="name" name="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+                    <!-- Titre de l'évènement -->
+                    <div>
+                        <label for="email" class="block text-gray-600">Votre adresse-mail</label>
+                        <input type="email" id="email" name="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                     </div>
                     <!-- Date et Heure de début -->
                     <div>
