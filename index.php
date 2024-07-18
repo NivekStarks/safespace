@@ -30,7 +30,7 @@ include_once('include/connection.php');
         $domain = $_POST['domain'];
         $needs = $_POST['needs'];
         $lieu = $_POST['LIEU'];
-        $lieu = $_POST['email'];
+        $email = $_POST['email'];
 
         // Prepare and execute the statement
         $stmt = $mysqlClient->prepare("INSERT INTO events (name, startDateTime, endDateTime, participants, domain, needs,LIEU, email) VALUES (?, ?, ?, ?, ?, ?,?, ?)");
