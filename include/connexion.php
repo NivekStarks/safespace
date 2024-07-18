@@ -80,9 +80,9 @@ if (!empty($_POST['MailCo']) && !empty($_POST['mot_passe'])) {
 
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                    Nom d'utilisateur
+                    Mail
                 </label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" name="MailCo" type="text" placeholder="Nom d'utilisateur" required>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" name="MailCo" type="text" placeholder="Mail" required>
             </div>
             <div class="mb-6">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
