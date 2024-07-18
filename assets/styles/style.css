@@ -1,3 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+    scroll-behavior: smooth;
+}
+
+.zoom-target {
+    transition: transform 0.2s;
+}
 
 .bg-custom {
     background-image: url('../img/bg-img.png');
