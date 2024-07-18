@@ -13,8 +13,8 @@ include_once('include/connection.php');
     <link rel="stylesheet" href="assets/styles/output.css">
     <script src="assets/scripts/script.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <script src="https://cdn.locationiq.com/v2/libs/locationiq-sdk-js/locationiq-sdk.min.js"></script>
-    </head>
+    <script src="https://api.geoapify.com/v1/places.js"></script>
+</head>
 
 <body class="bg-gray-100">
 
@@ -54,39 +54,47 @@ include_once('include/connection.php');
             });
         });
 
+
         document.addEventListener('DOMContentLoaded', function() {
-        var locationInput = document.getElementById('location');
-        var suggestionsList = document.getElementById('suggestions');
+            var locationInput = document.getElementById('location');
+            var suggestionsList = document.getElementById('suggestions');
 
-        // Fonction pour récupérer les suggestions d'adresse depuis LocationIQ
-        function fetchLocationSuggestions(query) {
-            var apiKey = 'votre_clé_api'; // Remplacez par votre clé API de LocationIQ (optionnelle pour les recherches limitées)
-
-            // Configuration de la requête vers l'API de géocodage de LocationIQ
-            var locationiq = new LocationIQ(apiKey);
-            locationiq.search(query, function (response) {
-                suggestionsList.innerHTML = '';
-
-                // Ajouter les suggestions à la liste déroulante
-                response.forEach(function (result) {
-                    var option = document.createElement('option');
-                    option.value = result.display_name;
-                    suggestionsList.appendChild(option);
-                });
+            // Créer une instance de Geoapify Places API
+            var placesAutocomplete = new geoapify.places.AutoCompleter({
+                apiKey: null, // Laissez apiKey à null pour un usage sans clé API
+                input: locationInput,
+                debounceDelay: 300, // Optionnel : délai de débounce pour limiter les appels API
+                onFeatureSelected: function(event) {
+                    locationInput.value = event.feature.properties.formatted;
+                }
             });
-        }
 
-        // Écouter les événements de saisie dans le champ de lieu
-        locationInput.addEventListener('input', function () {
-            var inputValue = this.value.trim();
+            // Écouter les événements de saisie dans le champ de lieu
+            locationInput.addEventListener('input', function() {
+                var inputValue = this.value.trim();
 
-            if (inputValue.length > 2) { // Vérifier si l'entrée est suffisamment longue pour une recherche significative
-                fetchLocationSuggestions(inputValue);
-            } else {
-                suggestionsList.innerHTML = ''; // Effacer la liste de suggestions si l'entrée est trop courte
-            }
+                if (inputValue.length > 2) { // Vérifier si l'entrée est suffisamment longue pour une recherche significative
+                    placesAutocomplete.search(inputValue)
+                        .then(function(response) {
+                            suggestionsList.innerHTML = '';
+
+                            // Ajouter les suggestions à la liste déroulante
+                            response.features.forEach(function(feature) {
+                                var option = document.createElement('option');
+                                option.value = feature.properties.formatted;
+                                suggestionsList.appendChild(option);
+                            });
+                        })
+                        .catch(function(error) {
+                            console.error('Erreur lors de la récupération des suggestions:', error);
+                        });
+                } else {
+                    suggestionsList.innerHTML = ''; // Effacer la liste de suggestions si l'entrée est trop courte
+                }
+            });
         });
-    });
+    </script>
+
     </script>
 
 
@@ -242,7 +250,10 @@ include_once('include/connection.php');
                     <!-- LIEU -->
                     <div>
                         <label for="location" class="block text-gray-600">Lieu</label>
-                        <input type="text" id="location" name="location" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        <input type="text" id="location" name="location" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" list="suggestions" required>
+                        <datalist id="suggestions">
+                            <!-- Suggestions seront ajoutées dynamiquement via JavaScript -->
+                        </datalist>
                     </div>
                     <!-- Nombre de participants -->
                     <div>
