@@ -1,5 +1,5 @@
 <!-- FOOTER -->
- <footer class="bg-purple py-4 px-24">
+ <footer class="bg-purple dark:bg-gray-900 py-4 px-24">
             <div class="container flex items-center flex-col gap-1 mx-auto px-4 text-white text-center">
                 <div class="flex items-center justify-around gap-4">
                     <div class="footer_left gap-1 flex flex-col">
