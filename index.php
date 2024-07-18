@@ -75,6 +75,58 @@ include_once('include/connection.php');
         </div>
     </div>
 
+    <section class="container mx-auto px-4 py-8 bg-white shadow-lg rounded-lg">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">Liste des Formations</h2>
+    <table class="w-full border-collapse">
+        <thead>
+            <tr>
+                <th class="border px-4 py-2">ID</th>
+                <th class="border px-4 py-2">Titre</th>
+                <th class="border px-4 py-2">Description</th>
+                <th class="border px-4 py-2">Participants Min</th>
+                <th class="border px-4 py-2">Participants Max</th>
+                <th class="border px-4 py-2">Date de Création</th>
+                <th class="border px-4 py-2">Date de Fin de Publication</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            try {
+                // Get today's date and time
+                $today = date('Y-m-d H:i:s');
+                
+                // SQL query to get active formations based on the current date and time
+                $sql = "SELECT * FROM formations WHERE creation_date <= :today AND end_publication_date >= :today";
+                $stmt = $mysqlClient->prepare($sql);
+                $stmt->bindParam(':today', $today);
+                $stmt->execute();
+
+                // Check if there are any results
+                if ($stmt->rowCount() > 0) {
+                    // Loop through the results and display them
+                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        echo "<tr>";
+                        echo "<td class='border px-4 py-2'>" . htmlspecialchars($row['id']) . "</td>";
+                        echo "<td class='border px-4 py-2'>" . htmlspecialchars($row['title']) . "</td>";
+                        echo "<td class='border px-4 py-2'>" . htmlspecialchars($row['description']) . "</td>";
+                        echo "<td class='border px-4 py-2'>" . htmlspecialchars($row['min_participants']) . "</td>";
+                        echo "<td class='border px-4 py-2'>" . htmlspecialchars($row['max_participants']) . "</td>";
+                        echo "<td class='border px-4 py-2'>" . date('d/m/Y', strtotime($row['creation_date'])) . "</td>";
+                        echo "<td class='border px-4 py-2'>" . date('d/m/Y', strtotime($row['end_publication_date'])) . "</td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    // No formations available
+                    echo "<tr><td colspan='7' class='border px-4 py-2 text-center text-gray-600'>Pas de formations disponibles</td></tr>";
+                }
+            } catch (PDOException $e) {
+                echo "<tr><td colspan='7' class='border px-4 py-2 text-red-500'>Erreur: " . $e->getMessage() . "</td></tr>";
+            }
+            ?>
+        </tbody>
+    </table>
+</section>
+
 <!-- Formulaire de Contact -->
 <section id="contact" class="container mx-auto px-4 py-8 bg-white shadow-lg rounded-lg form_place">
     <div class="form-container">
