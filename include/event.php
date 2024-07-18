@@ -109,6 +109,7 @@ if (!$result) {
                 <tr class="bg-purple-600 text-white">
                     <th class="py-2 px-4 border-b">Nom de l'événement</th>
                     <th class="py-2 px-4 border-b">Email</th>
+                    <th class="py-2 px-4 border-b">Lieu</th>
                     <th class="py-2 px-4 border-b">Date Heure début</th>
                     <th class="py-2 px-4 border-b">Date Heure fin</th>
                     <th class="py-2 px-4 border-b">Participants</th>
@@ -122,6 +123,7 @@ if (!$result) {
                     <tr class="hover:bg-gray-100">
                         <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['name']); ?></td>
                         <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['email']); ?></td>
+                        <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['LIEU']); ?></td>
                         <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['startDateTime']); ?></td>
                         <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['endDateTime']); ?></td>
                         <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['participants']); ?></td>
