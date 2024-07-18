@@ -46,7 +46,7 @@ if (!empty($_POST['MailCo']) && !empty($_POST['mot_passe'])) {
                     <a href="DeleteOffre.php">Supprimer une offre d'emploi</a>
                 </button>
                 <button class="w-full mb-3 py-2 bg-purple-700 text-white rounded" type="submit">
-                    <a href="AddActualites.php">Ajouter une actualité</a>
+                    <a href="GestionFormation.php">Gestion des formations</a>
                 </button>
                 <button class="w-full mb-3 py-2 bg-purple-700 text-white rounded" type="submit">
                     <a href="DeleteActualites.php">Supprimer une actualité</a>
