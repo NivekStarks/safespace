@@ -46,6 +46,9 @@ if (!empty($_POST['MailCo']) && !empty($_POST['mot_passe'])) {
                     <a href="DeleteOffre.php">Supprimer une offre d'emploi</a>
                 </button>
                 <button class="w-full mb-3 py-2 bg-purple-700 text-white rounded" type="submit">
+                    <a href="candidatebenevole.php">Candidature bénévole</a>
+                </button>
+                <button class="w-full mb-3 py-2 bg-purple-700 text-white rounded" type="submit">
                     <a href="AddActualites.php">Ajouter une actualité</a>
                 </button>
                 <button class="w-full mb-3 py-2 bg-purple-700 text-white rounded" type="submit">
@@ -57,7 +60,7 @@ if (!empty($_POST['MailCo']) && !empty($_POST['mot_passe'])) {
                 <button class="w-full mb-3 py-2 bg-black text-white rounded" type="submit">
                     <a href="changementMDP.php">Changer mon mot de passe</a>
                 </button>
-                <button class="w-full py-2 bg-red-600 text-white rounded" type="submit">
+                <button class="w-full mb-3 py-2 bg-red-600 text-white rounded" type="submit">
                     <a href="deconnexion.php">Déconnexion</a>
                 </button>
                 <button class="w-full py-2 bg-red-600 text-white rounded" type="submit">
