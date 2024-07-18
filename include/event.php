@@ -21,7 +21,7 @@ if (!$result) {
     <title>Back Office - Soumissions de Formulaire</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/styles/style.css">
-    <script>
+
         function validerEvent(id) {
             console.log("Valider l'événement avec l'ID: " + id);
             // Ajoutez ici la logique pour rester la donnée
@@ -43,7 +43,7 @@ if (!$result) {
 
         <table class="min-w-full bg-white border">
             <thead>
-                <tr class="border-purple text-white">
+
                     <th class="py-2 px-4 border-b">Nom de l'événement</th>
                     <th class="py-2 px-4 border-b">Date Heure début</th>
                     <th class="py-2 px-4 border-b">Date Heure fin</th>
@@ -61,7 +61,7 @@ if (!$result) {
                         <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['endDateTime']); ?></td>
                         <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['participants']); ?></td>
                         <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['domain']); ?></td>
-                        <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['needs']); ?></td>
+
                         <td class="py-2 px-4 border-b">
                             <button onclick="validerEvent(<?php echo $row['id']; ?>)" class="text-green-500">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -79,6 +79,7 @@ if (!$result) {
             </tbody>
         </table>
     </div>
+
 </body>
 
 </html>
