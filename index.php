@@ -29,10 +29,11 @@ include_once('include/connection.php');
         $participants = $_POST['participants'];
         $domain = $_POST['domain'];
         $needs = $_POST['needs'];
+        $lieu = $_POST['LIEU'];
 
         // Prepare and execute the statement
-        $stmt = $mysqlClient->prepare("INSERT INTO events (name, startDateTime, endDateTime, participants, domain, needs) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->execute([$name, $startDateTime, $endDateTime, $participants, $domain, $needs]);
+        $stmt = $mysqlClient->prepare("INSERT INTO events (name, startDateTime, endDateTime, participants, domain, needs,LIEU) VALUES (?, ?, ?, ?, ?, ?,?)");
+        $stmt->execute([$name, $startDateTime, $endDateTime, $participants, $domain, $needs,$lieu]);
 
         if ($stmt) {
             echo "<p class='text-green-500'>Nouvel enregistrement créé avec succès.</p>";
@@ -250,7 +251,7 @@ include_once('include/connection.php');
                     <!-- LIEU -->
                     <div>
                         <label for="location" class="block text-gray-600">Lieu</label>
-                        <input type="text" id="location" name="location" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" list="suggestions" required>
+                        <input type="text" id="location" name="LIEU" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" list="suggestions" required>
                         <datalist id="suggestions">
                             <!-- Suggestions seront ajoutées dynamiquement via JavaScript -->
                         </datalist>
