@@ -3,18 +3,17 @@ include_once('include/connection.php');
 ?>
 <!DOCTYPE html>
 <html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page de Présentation</title>
-    <link rel="shortcut icon" href="assets/img/parenthese_logo.jpeg" type="image/x-icon">
-    <link rel="stylesheet" href="assets/styles/style.css">
-    <script src="assets/scripts/script.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
-
-<body class="bg-gray-100">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Page de Présentation</title>
+        <script src="https://kit.fontawesome.com/e3fa649643.js" crossorigin="anonymous"></script>
+        <link rel="shortcut icon" href="assets/img/parenthese_logo.jpeg" type="image/x-icon">
+        <link rel="stylesheet" href="assets/styles/output.css">
+        <script src="assets/scripts/script.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    </head>
+    <body class="bg-gray-100">
 
     <?php
     include "include/header.php";
@@ -52,6 +51,10 @@ include_once('include/connection.php');
 </script>
 
 
+    <!--BTN RETOUR ACCUEIL-->
+
+    <a href="#" class="fixed bottom-4 right-4 p-2 bg-gray-800 text-white rounded"><i class="fa-solid fa-arrow-up"></i></a>
+
     <!-- Accueil -->
     <section class="bg-custom bg-cover bg-center mx-auto h-screen flex justify-evenly align-center items-center">
         <div class="bg-gradient-to-r from-gray-500 rounded-lg py-8 px-6 w-3/4">
@@ -60,20 +63,67 @@ include_once('include/connection.php');
         </div>
     </section>
 
-    <!-- Présentation de l'association -->
-    <section class="container flex items-center mx-auto px-24 py-8 w-3/4">
-        <div class="left">
-            <h1 class="text-3xl font-bold text-gray-800 mb-4">Qui sommes-nous ?</h1>
-            <p class="text-gray-600 mb-8">Notre association est dédiée à la lutte contre les violences dans tous les événements, en particulier au sein de la communauté sourde...</p>
+            <!-- Présentation de l'association -->
+            <section class="container flex items-center dark:bg-gray-900 dark:text-white mx-auto px-24 py-8 w-3/4">
+                <div class="left">
+                    <h1 class="text-3xl font-bold dark:bg-gray-900 text-gray-800 mb-4 zoom-target">Qui sommes-nous ?</h1>
+                    <p class="dark:bg-gray-900 text-gray-600 mb-8 zoom-target">
+                    Notre association est dédiée à la lutte contre les violences
+                    dans tous les événements, en particulier au sein de la
+                    communauté sourde. Nous nous engageons à sensibiliser,
+                    informer et soutenir les victimes, tout en promouvant un
+                    environnement respectueux et inclusif. À travers des actions
+                    concrètes et des formations, nous visons à prévenir les abus
+                    et à offrir un espace sûr pour tous. Notre équipe travaille en
+                    collaboration avec diverses organisations pour renforcer la
+                    solidarité et l’entraide. Ensemble, nous œuvrons pour un
+                    avenir où chacun peut participer librement et en toute
+                    sécurité. Rejoignez-nous dans cette mission essentielle !
+                    </p>
+                    <div class="w-full max-w-md p-4">
+                        <label for="zoomRange" class="block text-lg font-medium text-gray-700 dark:text-gray-300">Zoom global :</label>
+                        <input id="zoomRange" type="range" min="1" max="3" step="0.1" value="1" class="w-full mt-2">
+                    </div>
+                </div>
+                <img src="assets/img/safe.png" class="h-40" alt="">
+            </section>
+<div class="bg-white dark:bg-gray-900 text-black dark:text-white">
+            <div class="min-h-screen flex flex-col items-center justify-center space-y-6">
+        <div class="w-full max-w-md p-4">
+            <label for="zoomRange" class="block text-lg font-medium text-gray-700 dark:text-gray-300">Zoom global :</label>
+            <input id="zoomRange" type="range" min="1" max="3" step="0.1" value="1" class="w-full mt-2">
         </div>
-        <img src="assets/img/safe.png" class="h-40" alt="">
-    </section>
 
-    <div class="flex items-center justify-center mb-8">
-        <div class="pb-50-per h-1/2">
-            <iframe class="w-full h-full" src="https://www.youtube.com/embed/bxDlWTrdsyg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <h1 class="text-3xl font-bold dark:bg-gray-900 text-gray-800 mb-4 zoom-target">Qui sommes-nous ?</h1>
+                    <p class="dark:bg-gray-900 text-gray-600 mb-8 zoom-target">
+                    Notre association est dédiée à la lutte contre les violences
+                    dans tous les événements, en particulier au sein de la
+                    communauté sourde. Nous nous engageons à sensibiliser,
+                    informer et soutenir les victimes, tout en promouvant un
+                    environnement respectueux et inclusif. À travers des actions
+                    concrètes et des formations, nous visons à prévenir les abus
+                    et à offrir un espace sûr pour tous. Notre équipe travaille en
+                    collaboration avec diverses organisations pour renforcer la
+                    solidarité et l’entraide. Ensemble, nous œuvrons pour un
+                    avenir où chacun peut participer librement et en toute
+                    sécurité. Rejoignez-nous dans cette mission essentielle !
+                    </p>
+        <div class="w-full max-w-md p-4 bg-gray-100 dark:bg-gray-800 rounded zoom-target">
+            <p>Ceci est un exemple de texte que vous pouvez zoomer pour améliorer l'accessibilité.</p>
         </div>
-    </div>
+        <div class="w-full max-w-md p-4 bg-gray-200 dark:bg-gray-700 rounded zoom-target">
+            <p>Voici un autre exemple de texte pour tester le zoom sur une zone spécifique.</p>
+        </div>
+    </div></div>
+
+
+            <div class="flex justify-center items-center">
+                <div class="w-3/4">
+                    <div class="relative" style="height:500px">
+                        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/bxDlWTrdsyg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
 
 <!-- Formulaire de Contact -->
 <section id="contact" class="container mx-auto px-4 py-8 bg-white shadow-lg rounded-lg form_place">
@@ -120,15 +170,10 @@ include_once('include/connection.php');
         </div>
     </div>
 </section>
-
-
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-4 px-24">
-        <div class="container mx-auto px-4 text-center">
-            &copy; 2024 Notre Entreprise. Tous droits réservés.
-        </div>
-    </footer>
+<?php
+include "include/footer.php";
+?>
+        <script src="assets/scripts/script.js"></script>
 
 </body>
 

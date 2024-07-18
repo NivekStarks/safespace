@@ -1,5 +1,10 @@
 {
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.6.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.5",
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "~0.1.1"
   }
 }
