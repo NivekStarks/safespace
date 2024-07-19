@@ -137,6 +137,8 @@ include_once('include/connection.php');
         </div>
     </div>
 </div>
+
+<!-- TEST -->
 <section class="container mx-auto px-4 py-8 bg-white shadow-lg rounded-lg my-6">
     <h2 class="text-2xl font-bold text-gray-800 mb-4">Liste des Formations</h2>
     <div class="overflow-x-auto">
@@ -190,6 +192,8 @@ include_once('include/connection.php');
         </table>
     </div>
 </section>
+
+<!-- TEST -->
 
 <div class="bg-white dark:bg-gray-900 text-black dark:text-white">
             <div class="min-h-screen flex flex-col items-center justify-center space-y-6">
@@ -276,10 +280,6 @@ include_once('include/connection.php');
 </section>
 <br>
 
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 <?php
 include "include/footer.php";
 ?>
