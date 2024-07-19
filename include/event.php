@@ -1,6 +1,6 @@
 <?php
 // Inclure le fichier autoload de Composer pour utiliser PHPMailer
-require 'vendor/autoload.php';
+require ('vendor/autoload.php');
 require('connection.php');
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -47,13 +47,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'];
 
     if ($action === 'update_coords') {
-        $x = $_POST['x'];
-        $y = $_POST['y'];
+        $Latitude = $_POST['Latitude'];
+        $Longitude = $_POST['Longitude'];
 
-        $queryUpdateCoords = "UPDATE events SET x = :x, y = :y WHERE id = :id";
+        $queryUpdateCoords = "UPDATE events SET Latitude = :Latitude, Longitude = :Longitude WHERE id = :id";
         $stmtUpdateCoords = $mysqlClient->prepare($queryUpdateCoords);
-        $stmtUpdateCoords->bindParam(':x', $x);
-        $stmtUpdateCoords->bindParam(':y', $y);
+        $stmtUpdateCoords->bindParam(':Latitude', $Latitude);
+        $stmtUpdateCoords->bindParam(':Longitude', $Longitude);
         $stmtUpdateCoords->bindParam(':id', $eventId);
         $stmtUpdateCoords->execute();
 
@@ -96,10 +96,8 @@ if (!$result) {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -107,7 +105,6 @@ if (!$result) {
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/styles/style.css">
 </head>
-
 <body class="bg-gray-100">
     <div class="container mx-auto p-4">
         <div class="flex justify-center mb-4">
@@ -130,71 +127,75 @@ if (!$result) {
         <?php endif; ?>
 
         <!-- Tableau des soumissions de formulaire -->
-        <table class="min-w-full bg-white border">
-            <thead>
-                <tr class="bg-purple-600 text-white">
-                    <th class="py-2 px-4 border-b">Nom de l'événement</th>
-                    <th class="py-2 px-4 border-b">Email</th>
-                    <th class="py-2 px-4 border-b">Lieu</th>
-                    <th class="py-2 px-4 border-b">Date Heure début</th>
-                    <th class="py-2 px-4 border-b">Date Heure fin</th>
-                    <th class="py-2 px-4 border-b">Participants</th>
-                    <th class="py-2 px-4 border-b">Domaine</th>
-                    <th class="py-2 px-4 border-b">Besoin</th>
-                    <th class="py-2 px-4 border-b">X</th>
-                    <th class="py-2 px-4 border-b">Y</th>
-                    <th class="py-2 px-4 border-b">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php while ($row = $result->fetch(PDO::FETCH_ASSOC)) { ?>
-                    <tr class="hover:bg-gray-100">
-                        <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['name']); ?></td>
-                        <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['email']); ?></td>
-                        <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['LIEU']); ?></td>
-                        <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['startDateTime']); ?></td>
-                        <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['endDateTime']); ?></td>
-                        <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['participants']); ?></td>
-                        <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['domain']); ?></td>
-                        <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['needs']); ?></td>
-                        <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['x']); ?></td>
-                        <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['y']); ?></td>
-                        <td class="py-2 px-4 border-b">
-                            <form method="post" action="">
-                                <input type="hidden" name="event_id" value="<?php echo $row['id']; ?>">
-                                <button type="submit" name="action" value="valider" class="text-green-500">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </button>
-                                <button type="submit" name="action" value="invalider" class="text-red-500">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                                    </svg>
-                                </button>
-                                <button type="submit" name="action" value="informations_manquantes" class="text-yellow-500">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                    </svg>
-                                </button>
-                            </form>
-                            <form method="post" action="" class="mt-2">
-                                <input type="hidden" name="event_id" value="<?php echo $row['id']; ?>">
-                                <input type="text" name="x" placeholder="X" value="<?php echo htmlspecialchars($row['x']); ?>" class="border rounded px-2 py-1 w-16">
-                                <input type="text" name="y" placeholder="Y" value="<?php echo htmlspecialchars($row['y']); ?>" class="border rounded px-2 py-1 w-16">
-                                <button type="submit" name="action" value="update_coords" class="text-blue-500">
-                                    Modifier
-                                </button>
-                            </form>
-                        </td>
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white border border-gray-200">
+                <thead>
+                    <tr class="bg-purple-600 text-white">
+                        <th class="py-2 px-4 border-b">Nom de l'événement</th>
+                        <th class="py-2 px-4 border-b">Email</th>
+                        <th class="py-2 px-4 border-b">Lieu</th>
+                        <th class="py-2 px-4 border-b">Date Heure début</th>
+                        <th class="py-2 px-4 border-b">Date Heure fin</th>
+                        <th class="py-2 px-4 border-b">Participants</th>
+                        <th class="py-2 px-4 border-b">Nombre de benevole</th>
+                        <th class="py-2 px-4 border-b">Domaine</th>
+                        <th class="py-2 px-4 border-b">Besoin</th>
+                        <th class="py-2 px-4 border-b">Latitude</th>
+                        <th class="py-2 px-4 border-b">Longitude</th>
+                        <th class="py-2 px-4 border-b">Actions</th>
                     </tr>
-                <?php } ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php while ($row = $result->fetch(PDO::FETCH_ASSOC)) { ?>
+                        <tr class="hover:bg-gray-100">
+                            <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['name']); ?></td>
+                            <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['email']); ?></td>
+                            <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['LIEU']); ?></td>
+                            <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['startDateTime']); ?></td>
+                            <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['endDateTime']); ?></td>
+                            <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['participants']); ?></td>
+                            <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['nb_benevole']); ?></td>
+                            <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['domain']); ?></td>
+                            <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['needs']); ?></td>
+                            <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['Latitude']); ?></td>
+                            <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['Longitude']); ?></td>
+                            <td class="py-2 px-4 border-b">
+                                <form method="post" action="" class="flex flex-col sm:flex-row gap-2">
+                                    <input type="hidden" name="event_id" value="<?php echo $row['id']; ?>">
+                                    <button type="submit" name="action" value="valider" class="text-green-500">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </button>
+                                    <button type="submit" name="action" value="invalider" class="text-red-500">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </button>
+                                    <button type="submit" name="action" value="informations_manquantes" class="text-yellow-500">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                        </svg>
+                                    </button>
+                                    <form method="post" action="" class="flex flex-col sm:flex-row gap-2 mt-2">
+                                        <input type="hidden" name="event_id" value="<?php echo $row['id']; ?>">
+                                        <input type="text" name="Latitude" placeholder="Latitude" value="<?php echo htmlspecialchars($row['Latitude']); ?>" class="border rounded px-2 py-1 w-full sm:w-24">
+                                        <input type="text" name="Longitude" placeholder="Longitude" value="<?php echo htmlspecialchars($row['Longitude']); ?>" class="border rounded px-2 py-1 w-full sm:w-24">
+                                        <button type="submit" name="action" value="update_coords" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">
+                                            Modifier
+                                        </button>
+                                    </form>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
 
         <!-- Bouton lien Coordonnées GPS centré -->
         <div class="mt-4 flex justify-center">
-            <a href="https://www.coordonnees-gps.fr/" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">
+            <a href="https://www.coordonnees-gps.fr/" class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-800" target="_blank">
                 Coordonnées GPS
             </a>
         </div>
@@ -206,5 +207,4 @@ if (!$result) {
         }
     </script>
 </body>
-
 </html>

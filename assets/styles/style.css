@@ -4,10 +4,31 @@
 
 html {
     scroll-behavior: smooth;
+    /*overflow:hidden;*/
+    /*overflow:hidden;*/
 }
 
 .zoom-target {
     transition: transform 0.2s;
+}
+
+.item2 {
+	padding:30px;
+	font-size:3px;
+	margin-right:50px;
+	margin-bottom:50px;
+	width:auto;
+	overflow:hidden;
+	box-sizing:border-box;
+	-moz-box-sizing: border-box;
+    cursor: zoom-in;
+}
+
+.item2 span {
+	font-size:15px;
+	-webkit-transform: scale(0.2);
+	-moz-transform: scale(0.2);
+	-o-transform: scale(0.2);
 }
 
 .bg-custom {

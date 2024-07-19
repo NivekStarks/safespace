@@ -81,10 +81,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <td class="py-2 px-4 border-b"><?= htmlspecialchars($candidat['numero_siret']) ?></td>
                             <td class="py-2 px-4 border-b"><?= htmlspecialchars($candidat['numero_rna']) ?></td>
                             <td class="py-2 px-4 border-b">
-                                <form method="POST">
+                                <form method="POST" class="flex flex-col sm:flex-row gap-2">
                                     <input type="hidden" name="mail" value="<?= $candidat['mail'] ?>">
-                                    <button type="submit" name="validate" class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-700">Valider</button>
-                                    <button type="submit" name="refuse" class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700">Refuser</button>
+                                    <button type="submit" name="validate" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Valider</button>
+                                    <button type="submit" name="refuse" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">Refuser</button>
                                 </form>
                             </td>
                         </tr>
