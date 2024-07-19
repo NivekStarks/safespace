@@ -42,7 +42,7 @@ include_once('include/connection.php');
                 $stmt->execute([$name, $startDateTime, $endDateTime, $participants, $domain, $needs,$lieu, $email]);
 
                 if ($stmt) {
-                    echo "<p class='text-green-500'>Nouvel enregistrement créé avec succès.</p>";
+                    echo "<div class='bg-green-500 text-white p-4'>Votre demande a été envoyée avec succès!</div>";
                 } else {
                     echo "<p class='text-red-500'>Erreur: " . $stmt->errorInfo()[2] . "</p>";
                 }
