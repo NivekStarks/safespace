@@ -98,42 +98,38 @@ include_once('include/connection.php');
     </script>
 
 
-    <!--BTN RETOUR ACCUEIL-->
+   <!-- BTN RETOUR ACCUEIL -->
+<a href="#" class="fixed bottom-4 right-4 p-2 bg-gray-800 text-white rounded">
+    <i class="fa-solid fa-arrow-up"></i>
+</a>
 
-    <a href="#" class="fixed bottom-4 right-4 p-2 bg-gray-800 text-white rounded"><i class="fa-solid fa-arrow-up"></i></a>
-
-
-    <div class="w-full bg-gray-stronge">
-
+<div class="w-full bg-gray-stronge">
     <!-- Accueil -->
     <section class="bg-custom bg-cover bg-center mx-auto hero-img flex align-center items-end">
-            <div class="bg-gradient-to-r from-gray-500 rounded-lg py-8 px-6 w-full md:w-3/4">
-                <h1 class="text-4xl md:text-6xl text-white">Parenthèse - Safe Space Deaf</h1>
-                <div class="text-xl md:text-3xl text-white mt-4">Sensibiliser, faire des ateliers, présenter notre stand pour prévenir tout type de violence qui peuvent arriver lors des évènements Sourds à Toulouse et en France.</div>
-            </div>
-        </section>
+        <div class="bg-gradient-to-r from-gray-500 rounded-lg py-8 px-6 w-full md:w-3/4">
+            <h1 class="text-4xl md:text-6xl text-white">Parenthèse - Safe Space Deaf</h1>
+            <div class="text-xl md:text-3xl text-white mt-4">Sensibiliser, faire des ateliers, présenter notre stand pour prévenir tout type de violence qui peuvent arriver lors des évènements Sourds à Toulouse et en France.</div>
+        </div>
+    </section>
 
-
-            <!-- Présentation de l'association -->
-            <section class="container flex flex-col md:flex-row items-center w-full md:w-9/12 mx-auto md:mx-44">
-            <div class="left w-full md:w-6/12 p-4 md:p-0">
-                <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">Présentation de l'Association</h1>
-                <p class="text-gray-600 mb-8">Notre association est dédiée à la lutte contre les violences dans tous les événements, en particulier au sein de la communauté sourde. Nous nous engageons à sensibiliser, informer et soutenir les victimes, tout en promouvant un environnement respectueux et inclusif. À travers des actions concrètes et des formations, nous visons à prévenir les abus et à offrir un espace sûr pour tous. Notre équipe travaille en collaboration avec diverses organisations pour renforcer la solidarité et l’entraide. Ensemble, nous œuvrons pour un avenir où chacun peut participer librement et en toute sécurité. Rejoignez-nous dans cette mission essentielle !</p>
+    <!-- Présentation de l'association -->
+    <section class="container flex flex-col md:flex-row items-center w-full md:w-9/12 mx-auto md:mx-44">
+        <div class="left w-full md:w-6/12 p-4 md:p-0">
+            <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">Présentation de l'Association</h1>
+            <p class="text-gray-600 mb-8">Notre association est dédiée à la lutte contre les violences dans tous les événements, en particulier au sein de la communauté sourde. Nous nous engageons à sensibiliser, informer et soutenir les victimes, tout en promouvant un environnement respectueux et inclusif. À travers des actions concrètes et des formations, nous visons à prévenir les abus et à offrir un espace sûr pour tous. Notre équipe travaille en collaboration avec diverses organisations pour renforcer la solidarité et l’entraide. Ensemble, nous œuvrons pour un avenir où chacun peut participer librement et en toute sécurité. Rejoignez-nous dans cette mission essentielle !</p>
             <div class="w-full max-w-md p-4">
-                        <label for="zoomRange" class="block text-lg font-medium text-gray-700 dark:text-gray-300">Zoom global :</label>
-                        <input id="zoomRange" type="range" min="1" max="3" step="0.1" value="1" class="w-full mt-2">
-                    </div></div>
-            <div class="image-présentation w-full md:w-6/12 flex justify-center md:justify-end p-4 md:p-0">
-                <img src="assets/img/safe.png" class="h-auto w-full md:w-10/12" alt="Présentation Image">
+                <label for="zoomRange" class="block text-lg font-medium text-gray-700 dark:text-gray-300">Zoom global :</label>
+                <input id="zoomRange" type="range" min="1" max="3" step="0.1" value="1" class="w-full mt-2">
             </div>
-        </section>
-
-
+        </div>
+        <div class="image-présentation w-full md:w-6/12 flex justify-center md:justify-end p-4 md:p-0">
+            <img src="assets/img/safe.png" class="h-auto w-full md:w-10/12" alt="Présentation Image">
+        </div>
+    </section>
 
     <div class="video-container mx-auto px-4 md:px-44">
-            <div class="relative h-0 overflow-hidden" style="padding-bottom: 56.25%;">
-                <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/bxDlWTrdsyg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
+        <div class="relative h-0 overflow-hidden" style="padding-bottom: 56.25%;">
+            <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/bxDlWTrdsyg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
     </div>
 </div>
@@ -195,41 +191,32 @@ include_once('include/connection.php');
 
 <!-- TEST -->
 
-<div class="bg-white dark:bg-gray-900 text-black dark:text-white">
-            <div class="min-h-screen flex flex-col items-center justify-center space-y-6">
-        <div class="w-full max-w-md p-4">
+<div class="bg-white dark:bg-gray-900 text-black dark:text-white mx-auto md:px-44">
+    <div class="min-h-screen flex flex-col items-center justify-center space-y-6 p-4 md:p-8">
+        <div class="w-full max-w-md p-4 bg-gray-100 dark:bg-gray-800 rounded shadow-md">
             <label for="zoomRange" class="block text-lg font-medium text-gray-700 dark:text-gray-300">Zoom global :</label>
             <input id="zoomRange" type="range" min="1" max="3" step="0.1" value="1" class="w-full mt-2">
-        </div>
+        </div><br>
 
-        <h1 class="text-3xl font-bold dark:bg-gray-900 text-gray-800 mb-4 zoom-target">Qui sommes-nous ?</h1>
-                    <p class="dark:bg-gray-900 text-gray-600 mb-8 zoom-target">
-                    Notre association est dédiée à la lutte contre les violences
-                    dans tous les événements, en particulier au sein de la
-                    communauté sourde. Nous nous engageons à sensibiliser,
-                    informer et soutenir les victimes, tout en promouvant un
-                    environnement respectueux et inclusif. À travers des actions
-                    concrètes et des formations, nous visons à prévenir les abus
-                    et à offrir un espace sûr pour tous. Notre équipe travaille en
-                    collaboration avec diverses organisations pour renforcer la
-                    solidarité et l’entraide. Ensemble, nous œuvrons pour un
-                    avenir où chacun peut participer librement et en toute
-                    sécurité. Rejoignez-nous dans cette mission essentielle !
-                    </p>
-        <div class="w-full max-w-md p-4 bg-gray-100 dark:bg-gray-800 rounded zoom-target">
+        <h1 class="text-3xl font-bold text-gray-800 dark:text-white mb-4 zoom-target">Qui sommes-nous ?</h1>
+        <p class="text-gray-600 dark:text-gray-300 mb-8 text-left zoom-target">
+            Notre association est dédiée à la lutte contre les violences dans tous les événements, en particulier au sein de la communauté sourde. Nous nous engageons à sensibiliser, informer et soutenir les victimes, tout en promouvant un environnement respectueux et inclusif. À travers des actions concrètes et des formations, nous visons à prévenir les abus et à offrir un espace sûr pour tous. Notre équipe travaille en collaboration avec diverses organisations pour renforcer la solidarité et l’entraide. Ensemble, nous œuvrons pour un avenir où chacun peut participer librement et en toute sécurité. Rejoignez-nous dans cette mission essentielle !
+        </p>
+
+        <div class="w-full max-w-md p-4 bg-gray-100 dark:bg-gray-800 rounded shadow-md zoom-target">
             <p>Ceci est un exemple de texte que vous pouvez zoomer pour améliorer l'accessibilité.</p>
         </div>
-        <div class="w-full max-w-md p-4 bg-gray-200 dark:bg-gray-700 rounded zoom-target">
+        <div class="w-full max-w-md p-4 bg-gray-200 dark:bg-gray-700 rounded shadow-md zoom-target">
             <p>Voici un autre exemple de texte pour tester le zoom sur une zone spécifique.</p>
         </div>
-    </div></div>
+    </div>
+</div>
 
-     <!-- Contact -->
-     <section class="mx-auto px-4 md:px-44 contact-text">
+<!-- Contact -->
+<section class="mx-auto px-4 md:px-44 contact-text">
     <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">Trouvez l'Espace Sûr Idéal pour Votre Événement</h1>
     <p class="text-base md:text-lg mb-8">Vous cherchez un espace sûr et accueillant pour votre prochain événement ? Notre plateforme est là pour vous ! En nous fournissant quelques détails, nous pouvons vous aider à créer un environnement parfait et sécurisé pour vos invités. Remplissez le formulaire ci-dessous avec les informations sur votre événement, et laissez-nous nous occuper du reste. Votre satisfaction est notre priorité.</p>
 </section>
-
 
 <!-- Formulaire de Contact -->
 <section id="contact" class="container mx-auto bg-white shadow-lg rounded-lg form_place">
@@ -288,6 +275,7 @@ include_once('include/connection.php');
         </div>
     </div>
 </section>
+
 <br>
 
 <?php
