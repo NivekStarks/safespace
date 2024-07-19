@@ -3,7 +3,7 @@
 <!-- Footer -->
 <footer class="bg-gray-800 text-white py-8 px-6 md:px-24">
     <div class="container mx-auto px-4">
-        <div class="flex flex-col md:flex-row justify-between">
+        <div class="flex flex-col md:flex-row justify-between items-center">
             <!-- Colonne de gauche -->
             <div class="w-full md:w-1/2 mb-8 md:mb-0">
                 <!-- Adresse -->
@@ -29,7 +29,7 @@
                 </div>
             </div>
             <!-- Colonne de droite -->
-            <div class="w-full md:w-1/2 text-left md:text-right">
+            <div class="w-full md:w-1/2 text-left">
                 <h3 class="text-lg font-bold mb-4">À Propos de Nous</h3>
                 <p class="text-gray-400">Nous sommes une association dédiée à la lutte contre les violences dans tous les événements, en particulier au sein de la communauté sourde. Notre mission est de sensibiliser et de prévenir les violences à travers des ateliers et des stands d'information.</p>
             </div>
