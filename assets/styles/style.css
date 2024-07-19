@@ -11,7 +11,7 @@ html {
     transition: transform 0.2s;
 }
 
-#item2 {
+.item2 {
 	padding:30px;
 	font-size:3px;
 	margin-right:50px;
@@ -23,8 +23,7 @@ html {
     cursor: zoom-in;
 }
 
-#item2 span {
-    display:ruby;
+.item2 span {
 	font-size:15px;
 	-webkit-transform: scale(0.2);
 	-moz-transform: scale(0.2);
