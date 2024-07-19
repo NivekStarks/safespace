@@ -1,4 +1,4 @@
-<header class="bg-purple text-white">
+<header class="bg-purple text-white dark:bg-gray-900">
     <div class="container mx-auto flex justify-between items-center py-4 px-6 relative">
         <!-- Logo -->
         <div class="flex-shrink-0">
