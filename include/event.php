@@ -182,7 +182,7 @@ if (!$result) {
                                 <input type="hidden" name="event_id" value="<?php echo $row['id']; ?>">
                                 <input type="text" name="x" placeholder="X" value="<?php echo htmlspecialchars($row['x']); ?>" class="border rounded px-2 py-1 w-16">
                                 <input type="text" name="y" placeholder="Y" value="<?php echo htmlspecialchars($row['y']); ?>" class="border rounded px-2 py-1 w-16">
-                                <button type="submit" name="action" value="update_coords" class="text-blue-500">
+                                <button type="submit" name="action" value="update_coords" class="text-green-500 mt-2">
                                     Modifier
                                 </button>
                             </form>
