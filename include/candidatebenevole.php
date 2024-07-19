@@ -40,6 +40,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body class="bg-gray-100">
     <div class="container mx-auto p-6">
+        <div class="flex justify-center mb-4">
+            <a href="login.php" class="inline-block bg-purple-600 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded">Retour à l'accueil</a>
+        </div>
         <h1 class="text-3xl font-bold mb-6">Liste des Candidats</h1>
         <div class="overflow-x-auto">
             <table class="min-w-full bg-white border border-gray-300 text-sm">

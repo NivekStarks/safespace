@@ -126,8 +126,8 @@ $email_new = isset($_GET['email_new']) ? htmlspecialchars($_GET['email_new']) : 
                     <button class="bg-purple-700 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full" type="submit">Ajouter ce nouveau bénévole</button>
                 </div>
             </form>
-            <div class="text-center mt-4">
-                <a class="text-purple-700 hover:text-purple-800" href="login.php">Revenir en arrière</a>
+            <div class="flex justify-center">
+                <a href="login.php" class="inline-block bg-purple-600 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded">Retour à l'accueil</a>
             </div>
         </div>
 

@@ -7,7 +7,8 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 // Fonction pour envoyer un email
-function sendEmail($recipientEmail, $subject, $body) {
+function sendEmail($recipientEmail, $subject, $body)
+{
     $mail = new PHPMailer(true);
     try {
         // Configuration SMTP
@@ -45,29 +46,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $eventId = $_POST['event_id'];
     $action = $_POST['action'];
 
-    $query = "SELECT email FROM events WHERE id = :id";
-    $stmt = $mysqlClient->prepare($query);
-    $stmt->bindParam(':id', $eventId);
-    $stmt->execute();
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($action === 'update_coords') {
+        $x = $_POST['x'];
+        $y = $_POST['y'];
 
-    if ($row) {
-        $recipientEmail = $row['email'];
-        if ($action === 'valider') {
-            // Envoyer email de validation
-            $messageConfirmation = sendEmail($recipientEmail, 'Confirmation de l\'événement', 'Votre événement a été confirmé.');
-        } elseif ($action === 'invalider') {
-            // Supprimer l'événement de la base de données
-            $queryDelete = "DELETE FROM events WHERE id = :id";
-            $stmtDelete = $mysqlClient->prepare($queryDelete);
-            $stmtDelete->bindParam(':id', $eventId);
-            $stmtDelete->execute();
+        $queryUpdateCoords = "UPDATE events SET x = :x, y = :y WHERE id = :id";
+        $stmtUpdateCoords = $mysqlClient->prepare($queryUpdateCoords);
+        $stmtUpdateCoords->bindParam(':x', $x);
+        $stmtUpdateCoords->bindParam(':y', $y);
+        $stmtUpdateCoords->bindParam(':id', $eventId);
+        $stmtUpdateCoords->execute();
 
-            // Envoyer email de refus
-            $messageConfirmation = sendEmail($recipientEmail, 'Refus de l\'événement', 'Votre événement a été refusé.');
-        } elseif ($action === 'informations_manquantes') {
-            // Envoyer email d'informations manquantes
-            $messageConfirmation = sendEmail($recipientEmail, 'Informations manquantes sur l\'événement', 'Merci de fournir plus d\'informations sur votre événement.');
+        $messageConfirmation = "Coordonnées mises à jour pour l'événement ID {$eventId}";
+    } else {
+        $query = "SELECT email FROM events WHERE id = :id";
+        $stmt = $mysqlClient->prepare($query);
+        $stmt->bindParam(':id', $eventId);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($row) {
+            $recipientEmail = $row['email'];
+            if ($action === 'valider') {
+                // Envoyer email de validation
+                $messageConfirmation = sendEmail($recipientEmail, 'Confirmation de l\'événement', 'Votre événement a été confirmé.');
+            } elseif ($action === 'invalider') {
+                // Supprimer l'événement de la base de données
+                $queryDelete = "DELETE FROM events WHERE id = :id";
+                $stmtDelete = $mysqlClient->prepare($queryDelete);
+                $stmtDelete->bindParam(':id', $eventId);
+                $stmtDelete->execute();
+
+                // Envoyer email de refus
+                $messageConfirmation = sendEmail($recipientEmail, 'Refus de l\'événement', 'Votre événement a été refusé.');
+            } elseif ($action === 'informations_manquantes') {
+                // Envoyer email d'informations manquantes
+                $messageConfirmation = sendEmail($recipientEmail, 'Informations manquantes sur l\'événement', 'Merci de fournir plus d\'informations sur votre événement.');
+            }
         }
     }
 }
@@ -80,6 +95,7 @@ if (!$result) {
     die("Erreur lors de la récupération des données: " . $mysqlClient->errorInfo()[2]);
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -94,20 +110,23 @@ if (!$result) {
 
 <body class="bg-gray-100">
     <div class="container mx-auto p-4">
+        <div class="flex justify-center mb-4">
+            <a href="login.php" class="inline-block bg-purple-600 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded">Retour à l'accueil</a>
+        </div>
         <h2 class="text-2xl font-bold mb-4">Back Office - Soumissions de Formulaire</h2>
 
         <!-- Affichage du message de confirmation -->
-        <?php if (isset($messageConfirmation)): ?>
-        <div id="successMessage" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
-            <strong class="font-bold">Succès !</strong>
-            <span class="block sm:inline"><?php echo htmlspecialchars($messageConfirmation); ?></span>
-        </div>
-        <script>
-            // Effacer le message après 5 secondes
-            setTimeout(function() {
-                document.getElementById('successMessage').remove();
-            }, 5000);
-        </script>
+        <?php if (isset($messageConfirmation)) : ?>
+            <div id="successMessage" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                <strong class="font-bold">Succès !</strong>
+                <span class="block sm:inline"><?php echo htmlspecialchars($messageConfirmation); ?></span>
+            </div>
+            <script>
+                // Effacer le message après 5 secondes
+                setTimeout(function() {
+                    document.getElementById('successMessage').remove();
+                }, 5000);
+            </script>
         <?php endif; ?>
 
         <!-- Tableau des soumissions de formulaire -->
@@ -122,6 +141,8 @@ if (!$result) {
                     <th class="py-2 px-4 border-b">Participants</th>
                     <th class="py-2 px-4 border-b">Domaine</th>
                     <th class="py-2 px-4 border-b">Besoin</th>
+                    <th class="py-2 px-4 border-b">X</th>
+                    <th class="py-2 px-4 border-b">Y</th>
                     <th class="py-2 px-4 border-b">Actions</th>
                 </tr>
             </thead>
@@ -135,11 +156,9 @@ if (!$result) {
                         <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['endDateTime']); ?></td>
                         <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['participants']); ?></td>
                         <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['domain']); ?></td>
-                        <td class="py-2 px-4 border-b">
-                            <span onclick="toggleText('<?php echo htmlspecialchars(addslashes($row['needs'])); ?>')" class="show-more text-blue-500 cursor-pointer">
-                                En voir plus
-                            </span>
-                        </td>
+                        <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['needs']); ?></td>
+                        <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['x']); ?></td>
+                        <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($row['y']); ?></td>
                         <td class="py-2 px-4 border-b">
                             <form method="post" action="">
                                 <input type="hidden" name="event_id" value="<?php echo $row['id']; ?>">
@@ -159,11 +178,26 @@ if (!$result) {
                                     </svg>
                                 </button>
                             </form>
+                            <form method="post" action="" class="mt-2">
+                                <input type="hidden" name="event_id" value="<?php echo $row['id']; ?>">
+                                <input type="text" name="x" placeholder="X" value="<?php echo htmlspecialchars($row['x']); ?>" class="border rounded px-2 py-1 w-16">
+                                <input type="text" name="y" placeholder="Y" value="<?php echo htmlspecialchars($row['y']); ?>" class="border rounded px-2 py-1 w-16">
+                                <button type="submit" name="action" value="update_coords" class="text-blue-500">
+                                    Modifier
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
+
+        <!-- Bouton lien Coordonnées GPS centré -->
+        <div class="mt-4 flex justify-center">
+            <a href="https://www.coordonnees-gps.fr/" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">
+                Coordonnées GPS
+            </a>
+        </div>
     </div>
 
     <script>
@@ -171,7 +205,6 @@ if (!$result) {
             document.querySelector('.alert').remove();
         }
     </script>
-
 </body>
 
 </html>
