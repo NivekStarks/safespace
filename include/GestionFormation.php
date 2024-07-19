@@ -68,6 +68,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
 </head>
 <body>
+<div class="flex justify-center mt-4">
+    <a href="login.php" class="inline-block bg-purple-600 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded">Retour à l'accueil</a>
+</div>
 <section class="container mx-auto px-4 py-8 bg-white shadow-lg rounded-lg max-w-4xl">
     <div class="text-center">
         <h2 class="text-2xl font-bold text-gray-800 mb-4">GESTION DES FORMATIONS</h2>
@@ -110,9 +113,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <input type="hidden" name="action" value="addFormation">
         </form>
-    </div>
-    <div class="text-center mt-4">
-        <a class="text-purple-700 hover:text-purple-800" href="login.php">Revenir en arrière</a>
     </div>
 </section>
 

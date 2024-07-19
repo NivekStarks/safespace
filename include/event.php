@@ -102,6 +102,9 @@ if (!$result) {
 
 <body class="bg-gray-100">
     <div class="container mx-auto p-4">
+        <div class="flex justify-center mb-4">
+            <a href="login.php" class="inline-block bg-purple-600 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded">Retour à l'accueil</a>
+        </div>
         <h2 class="text-2xl font-bold mb-4">Back Office - Soumissions de Formulaire</h2>
 
         <table class="min-w-full bg-white border">
