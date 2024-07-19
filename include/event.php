@@ -1,12 +1,81 @@
 <?php
-// Connexion à la base de données
+// Inclure le fichier autoload de Composer pour utiliser PHPMailer
+require 'vendor/autoload.php';
 require('connection.php');
 
-// Sélectionner toutes les soumissions de formulaire
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+// Fonction pour envoyer un email
+function sendEmail($recipientEmail, $subject, $body) {
+    $mail = new PHPMailer(true);
+    try {
+        // Configuration SMTP
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';  // Serveur SMTP Gmail
+        $mail->SMTPAuth = true;
+        $mail->Username = 'votremail@gmail.com';  // Votre adresse Gmail
+        $mail->Password = 'votremotdepasse';  // Votre mot de passe Gmail
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = 587;
+
+        // Expéditeur et destinataire
+        $mail->setFrom('votremail@gmail.com', 'Votre Nom');
+        $mail->addAddress($recipientEmail);
+
+        // Contenu de l'email
+        $mail->isHTML(true);
+        $mail->CharSet = 'UTF-8';
+        $mail->Encoding = 'base64';
+        $mail->Subject = $subject;
+        $mail->Body = $body;
+
+        // Envoyer l'email
+        $mail->send();
+
+        // Retourner un message de confirmation
+        return "Email envoyé à {$recipientEmail}";
+    } catch (Exception $e) {
+        return "Erreur lors de l'envoi de l'email : {$mail->ErrorInfo}";
+    }
+}
+
+// Traitement du formulaire après validation
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $eventId = $_POST['event_id'];
+    $action = $_POST['action'];
+
+    $query = "SELECT email FROM events WHERE id = :id";
+    $stmt = $mysqlClient->prepare($query);
+    $stmt->bindParam(':id', $eventId);
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($row) {
+        $recipientEmail = $row['email'];
+        if ($action === 'valider') {
+            // Envoyer email de validation
+            $messageConfirmation = sendEmail($recipientEmail, 'Confirmation de l\'événement', 'Votre événement a été confirmé.');
+        } elseif ($action === 'invalider') {
+            // Supprimer l'événement de la base de données
+            $queryDelete = "DELETE FROM events WHERE id = :id";
+            $stmtDelete = $mysqlClient->prepare($queryDelete);
+            $stmtDelete->bindParam(':id', $eventId);
+            $stmtDelete->execute();
+
+            // Envoyer email de refus
+            $messageConfirmation = sendEmail($recipientEmail, 'Refus de l\'événement', 'Votre événement a été refusé.');
+        } elseif ($action === 'informations_manquantes') {
+            // Envoyer email d'informations manquantes
+            $messageConfirmation = sendEmail($recipientEmail, 'Informations manquantes sur l\'événement', 'Merci de fournir plus d\'informations sur votre événement.');
+        }
+    }
+}
+
+// Récupération de toutes les soumissions de formulaire
 $query = "SELECT * FROM events ORDER BY id DESC";
 $result = $mysqlClient->query($query);
 
-// Vérification de l'exécution de la requête
 if (!$result) {
     die("Erreur lors de la récupération des données: " . $mysqlClient->errorInfo()[2]);
 }
@@ -21,89 +90,27 @@ if (!$result) {
     <title>Back Office - Soumissions de Formulaire</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/styles/style.css">
-    <style>
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgb(0,0,0);
-            background-color: rgba(0,0,0,0.4);
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 500px;
-            max-height: 80%;
-            overflow-y: auto;
-            box-shadow: 0 5px 15px rgba(0,0,0,.5);
-            border-radius: 10px;
-            white-space: pre-wrap; /* Permet d'afficher les sauts de ligne */
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-    </style>
-    <script>
-        function toggleText(text) {
-            var modal = document.getElementById("modal");
-            var modalContent = document.getElementById("modal-content-text");
-            modalContent.innerText = text.trim();  // Trim whitespace
-            modal.style.display = "flex";
-        }
-
-        function closeModal() {
-            var modal = document.getElementById("modal");
-            modal.style.display = "none";
-        }
-
-        window.onclick = function(event) {
-            var modal = document.getElementById("modal");
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-
-        function validerEvent(id) {
-            console.log("Valider l'événement avec l'ID: " + id);
-            // Ajoutez ici la logique pour rester la donnée
-        }
-
-        function invaliderEvent(row) {
-            if (confirm("Êtes-vous sûr de vouloir invalider cet événement ?")) {
-                // Supprimer la ligne du tableau
-                var rowElement = row.parentNode.parentNode;
-                rowElement.parentNode.removeChild(rowElement);
-            }
-        }
-    </script>
 </head>
 
 <body class="bg-gray-100">
     <div class="container mx-auto p-4">
         <h2 class="text-2xl font-bold mb-4">Back Office - Soumissions de Formulaire</h2>
 
+        <!-- Affichage du message de confirmation -->
+        <?php if (isset($messageConfirmation)): ?>
+        <div id="successMessage" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+            <strong class="font-bold">Succès !</strong>
+            <span class="block sm:inline"><?php echo htmlspecialchars($messageConfirmation); ?></span>
+        </div>
+        <script>
+            // Effacer le message après 5 secondes
+            setTimeout(function() {
+                document.getElementById('successMessage').remove();
+            }, 5000);
+        </script>
+        <?php endif; ?>
+
+        <!-- Tableau des soumissions de formulaire -->
         <table class="min-w-full bg-white border">
             <thead>
                 <tr class="bg-purple-600 text-white">
@@ -134,16 +141,24 @@ if (!$result) {
                             </span>
                         </td>
                         <td class="py-2 px-4 border-b">
-                            <button onclick="validerEvent(<?php echo $row['id']; ?>)" class="text-green-500">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
-                            </button>
-                            <button onclick="invaliderEvent(this)" class="text-red-500">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            </button>
+                            <form method="post" action="">
+                                <input type="hidden" name="event_id" value="<?php echo $row['id']; ?>">
+                                <button type="submit" name="action" value="valider" class="text-green-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </button>
+                                <button type="submit" name="action" value="invalider" class="text-red-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                                <button type="submit" name="action" value="informations_manquantes" class="text-yellow-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                    </svg>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 <?php } ?>
@@ -151,13 +166,12 @@ if (!$result) {
         </table>
     </div>
 
-    <!-- The Modal -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <p id="modal-content-text"></p>
-        </div>
-    </div>
+    <script>
+        function closeMessage() {
+            document.querySelector('.alert').remove();
+        }
+    </script>
+
 </body>
 
 </html>
