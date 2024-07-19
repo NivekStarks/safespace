@@ -39,36 +39,21 @@ if (!empty($_POST['MailCo']) && !empty($_POST['mot_passe'])) {
             <h1 class="text-2xl font-bold text-purple-700 mb-4">QUE SOUHAITEZ-VOUS FAIRE ?</h1>
             <p class="mb-6">Vous êtes : <?php echo $_SESSION['LOGGED_USER']; ?></p>
             <form>
-                <button class="w-full mb-3 py-2 bg-purple-700 text-white rounded" type="submit">
-                     <a href="GestionFormation.php">Gestion des formations</a>
+                <button class="w-full mb-3 py-2 bg-purple-700 hover:bg-purple-800 text-white rounded" type="button" onclick="location.href='GestionFormation.php'">
+                    Gestion des formations
                 </button>
-                <button class="w-full mb-3 py-2 bg-purple-700 text-white rounded" type="submit">
-                    <a href="DeleteOffre.php">Supprimer une offre d'emploi</a>
+                <button class="w-full mb-3 py-2 bg-purple-700 hover:bg-purple-800 text-white rounded" type="button" onclick="location.href='event.php'">
+                    Gestion SAFE SPACE
                 </button>
-                <button class="w-full mb-3 py-2 bg-purple-700 text-white rounded" type="submit">
-
-                    <a href="candidatebenevole.php">Candidature bénévole</a>
+                <button class="w-full mb-3 py-2 bg-purple-700 hover:bg-purple-800 text-white rounded" type="button" onclick="location.href='candidatebenevole.php'">
+                    Candidature bénévole
                 </button>
-                <button class="w-full mb-3 py-2 bg-purple-700 text-white rounded" type="submit">
-                    <a href="AddActualites.php">Ajouter une actualité</a>
-
+                <button class="w-full mb-3 py-2 bg-purple-700 hover:bg-purple-800 text-white rounded" type="button" onclick="location.href='newBenevole.php'">
+                    Ajouter un bénévole
                 </button>
-                <button class="w-full mb-3 py-2 bg-purple-700 text-white rounded" type="submit">
-                    <a href="DeleteActualites.php">Supprimer une actualité</a>
+                <button class="w-full mb-3 py-2 bg-red-600 hover:bg-red-700 text-white rounded" type="button" onclick="location.href='deconnexion.php'">
+                    Déconnexion
                 </button>
-                <button class="w-full mb-3 py-2 bg-purple-700 text-white rounded" type="submit">
-                    <a href="NewBenevole.php">Ajouter un benevole</a>
-                </button>
-                <button class="w-full mb-3 py-2 bg-black text-white rounded" type="submit">
-                    <a href="changementMDP.php">Changer mon mot de passe</a>
-                </button>
-                <button class="w-full mb-3 py-2 bg-red-600 text-white rounded" type="submit">
-                    <a href="deconnexion.php">Déconnexion</a>
-                </button>
-                <button class="w-full py-2 bg-red-600 text-white rounded" type="submit">
-                    <a href="event.php">Event - Develop</a>
-                </button>
-
             </form>
         <?php else: ?>
             <h1 class="text-2xl font-bold text-purple-700 mb-4">ERREUR, IL SEMBLE QUE VOUS NE SOYEZ PAS CONNECTÉ</h1>
