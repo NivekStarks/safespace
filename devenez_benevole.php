@@ -71,6 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<script type="text/javascript" src="assets/scripts/sylvester.src.stripped.js"></script>
 		<script type="text/javascript" src="assets/scripts/jquery.zoomooz-zoomTarget.js"></script>
 		<script type="text/javascript" src="assets/scripts/jquery.zoomooz-zoomContainer.js"></script>
+        <script src="assets/scripts/menu.js"></script>
     <script src="https://kit.fontawesome.com/e3fa649643.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script>
@@ -83,6 +84,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         window.onload = function () {
             toggleFields();
         };
+
+        function toggleFields() {
+        const profil = document.getElementById('profil').value;
+        const siretField = document.getElementById('siret-field');
+        const rnaField = document.getElementById('rna-field');
+
+        if (profil === 'association') {
+            siretField.style.display = 'none';
+            rnaField.style.display = 'block';
+        } else if (profil === 'entreprise') {
+            siretField.style.display = 'block';
+            rnaField.style.display = 'none';
+        } else {
+            siretField.style.display = 'none';
+            rnaField.style.display = 'none';
+        }
+    }
     </script>
 </head>
 
@@ -180,6 +198,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php
         include "include/footer.php";
     ?>
+
 </body>
 
 </html>
