@@ -2,6 +2,27 @@ function changeTheme(event) {
     document.documentElement.classList.toggle("dark");
   }
 
+  $(document).ready(function() {
+    $(".zoomItem").click(function(evt) {
+        evt.stopPropagation();
+        evt.preventDefault();
+        $(this).zoomTo({debug:true, nativeanimation:true});
+    });
+    
+    $(window).click(function(evt) {
+        evt.stopPropagation();
+        $("body").zoomTo({targetsize:1.0, nativeanimation:true});
+    });
+    
+    // for iPhone
+    $("#container").click(function(evt) {
+        evt.stopPropagation();
+        $("body").zoomTo({targetsize:1.0, nativeanimation:true});
+    });
+    
+    $("body").zoomTo({targetsize:1.0, nativeanimation:true});
+});
+
   // FUNCTION ZOOM TXT
 
   const zoomRange = document.getElementById('zoomRange');
