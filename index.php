@@ -9,17 +9,8 @@ include_once('include/connection.php');
         <title>Page de Présentation</title>
         <script src="https://kit.fontawesome.com/e3fa649643.js" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
         <link rel="shortcut icon" href="assets/img/parenthese_logo.jpeg" type="image/x-icon">
         <link rel="stylesheet" href="assets/styles/output.css">
-        <script src="assets/scripts/script.js"></script>        
-		<script type="text/javascript" src="assets/scripts/jquery.zoomooz-helpers.js"></script>
-		<script type="text/javascript" src="assets/scripts/jquery.zoomooz-anim.js"></script>
-		<script type="text/javascript" src="assets/scripts/jquery.zoomooz-core.js"></script>
-		<script type="text/javascript" src="assets/scripts/purecssmatrix.js"></script>
-		<script type="text/javascript" src="assets/scripts/sylvester.src.stripped.js"></script>
-		<script type="text/javascript" src="assets/scripts/jquery.zoomooz-zoomTarget.js"></script>
-		<script type="text/javascript" src="assets/scripts/jquery.zoomooz-zoomContainer.js"></script>
         <script src="assets/scripts/script.js"></script>        
 		<script type="text/javascript" src="assets/scripts/jquery.zoomooz-helpers.js"></script>
 		<script type="text/javascript" src="assets/scripts/jquery.zoomooz-anim.js"></script>
