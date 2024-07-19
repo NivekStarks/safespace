@@ -11,6 +11,11 @@ include_once('include/connection.php');
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
         <link rel="shortcut icon" href="assets/img/parenthese_logo.jpeg" type="image/x-icon">
         <link rel="stylesheet" href="assets/styles/output.css">
+
+        <link rel="stylesheet" href="assets/styles/style.css">
+
+        <script src="assets/scripts/menu.js"></script>
+
         <script src="assets/scripts/script.js"></script>        
 		<script type="text/javascript" src="assets/scripts/jquery.zoomooz-helpers.js"></script>
 		<script type="text/javascript" src="assets/scripts/jquery.zoomooz-anim.js"></script>
@@ -19,6 +24,10 @@ include_once('include/connection.php');
 		<script type="text/javascript" src="assets/scripts/sylvester.src.stripped.js"></script>
 		<script type="text/javascript" src="assets/scripts/jquery.zoomooz-zoomTarget.js"></script>
 		<script type="text/javascript" src="assets/scripts/jquery.zoomooz-zoomContainer.js"></script>
+      <link rel="stylesheet" href="assets/styles/style.css">
+        <script src="assets/scripts/script.js"></script>
+        <script src="assets/scripts/menu.js"></script>
+
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     </head>
     <body class="bg-gray-100 dark:bg-gray-600">
