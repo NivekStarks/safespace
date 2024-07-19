@@ -12,6 +12,7 @@ include_once('include/connection.php');
         <link rel="stylesheet" href="assets/styles/output.css">
         <link rel="stylesheet" href="assets/styles/style.css">
         <script src="assets/scripts/script.js"></script>
+        <script src="assets/scripts/menu.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     </head>
     <body class="bg-gray-100">
