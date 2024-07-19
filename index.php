@@ -32,10 +32,37 @@ include_once('include/connection.php');
     </head>
     <body class="bg-gray-100 dark:bg-gray-600">
 
-        <?php
+    <?php
             include "include/header.php";
 
-            // Check if the form is submitted
+            $cities = [
+                "Paris" => ["lat" => 48.8566, "lon" => 2.3522],
+                "Marseille" => ["lat" => 43.2965, "lon" => 5.3698],
+                "Lyon" => ["lat" => 45.7640, "lon" => 4.8357],
+                "Toulouse" => ["lat" => 43.6045, "lon" => 1.4442],
+                "Nice" => ["lat" => 43.7102, "lon" => 7.2620],
+                "Nantes" => ["lat" => 47.2184, "lon" => -1.5536],
+                "Strasbourg" => ["lat" => 48.5734, "lon" => 7.7521],
+                "Montpellier" => ["lat" => 43.6108, "lon" => 3.8767],
+                "Bordeaux" => ["lat" => 44.8378, "lon" => -0.5792],
+                "Lille" => ["lat" => 50.6292, "lon" => 3.0573],
+                "Rennes" => ["lat" => 48.1173, "lon" => -1.6778],
+                "Reims" => ["lat" => 49.2583, "lon" => 4.0317],
+                "Le Havre" => ["lat" => 49.4944, "lon" => 0.1079],
+                "Saint-Étienne" => ["lat" => 45.4397, "lon" => 4.3872],
+                "Toulon" => ["lat" => 43.1242, "lon" => 5.9280],
+                "Angers" => ["lat" => 47.4784, "lon" => -0.5632],
+                "Grenoble" => ["lat" => 45.1885, "lon" => 5.7245],
+                "Dijon" => ["lat" => 47.3220, "lon" => 5.0415],
+                "Nîmes" => ["lat" => 43.8367, "lon" => 4.3601],
+                "Aix-en-Provence" => ["lat" => 43.5297, "lon" => 5.4474],
+                "Brest" => ["lat" => 48.3904, "lon" => -4.4861],
+                "Limoges" => ["lat" => 45.8336, "lon" => 1.2611],
+                "Clermont-Ferrand" => ["lat" => 45.7772, "lon" => 3.0870],
+                "Tours" => ["lat" => 47.3941, "lon" => 0.6848],
+                "Amiens" => ["lat" => 49.8950, "lon" => 2.3023]
+            ];
+
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $name = $_POST['name'];
                 $startDateTime = $_POST['startDateTime'];
@@ -45,13 +72,17 @@ include_once('include/connection.php');
                 $needs = $_POST['needs'];
                 $lieu = $_POST['LIEU'];
                 $email = $_POST['email'];
-
+            
+                // Retrieve the coordinates for the selected city
+                $latitude = $cities[$lieu]['lat'];
+                $longitude = $cities[$lieu]['lon'];
+            
                 // Prepare and execute the statement
-                $stmt = $mysqlClient->prepare("INSERT INTO events (name, startDateTime, endDateTime, participants, domain, needs,LIEU, email) VALUES (?, ?, ?, ?, ?, ?,?, ?)");
-                $stmt->execute([$name, $startDateTime, $endDateTime, $participants, $domain, $needs,$lieu, $email]);
-
+                $stmt = $mysqlClient->prepare("INSERT INTO events (name, startDateTime, endDateTime, participants, domain, needs, LIEU, email, Latitude, Longitude) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                $stmt->execute([$name, $startDateTime, $endDateTime, $participants, $domain, $needs, $lieu, $email, $latitude, $longitude]);
+            
                 if ($stmt) {
-                    echo "<div class='bg-green-500 text-white p-4'>Votre demande a été envoyée avec succès!</div>";
+                    echo "<p class='text-green-500'>Nouvel enregistrement créé avec succès.</p>";
                 } else {
                     echo "<p class='text-red-500'>Erreur: " . $stmt->errorInfo()[2] . "</p>";
                 }

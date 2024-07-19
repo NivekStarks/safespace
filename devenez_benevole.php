@@ -71,6 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<script type="text/javascript" src="assets/scripts/sylvester.src.stripped.js"></script>
 		<script type="text/javascript" src="assets/scripts/jquery.zoomooz-zoomTarget.js"></script>
 		<script type="text/javascript" src="assets/scripts/jquery.zoomooz-zoomContainer.js"></script>
+        <script src="assets/scripts/menu.js"></script>
     <script src="https://kit.fontawesome.com/e3fa649643.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script>
