@@ -110,6 +110,9 @@ if (!$result) {
 
 <body class="bg-gray-100">
     <div class="container mx-auto p-4">
+        <div class="flex justify-center mb-4">
+            <a href="login.php" class="inline-block bg-purple-600 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded">Retour à l'accueil</a>
+        </div>
         <h2 class="text-2xl font-bold mb-4">Back Office - Soumissions de Formulaire</h2>
 
         <!-- Affichage du message de confirmation -->
@@ -191,7 +194,7 @@ if (!$result) {
 
         <!-- Bouton lien Coordonnées GPS centré -->
         <div class="mt-4 flex justify-center">
-            <a href="https://www.coordonnees-gps.fr/" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">
+            <a href="https://www.coordonnees-gps.fr/" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700" target="_blank">
                 Coordonnées GPS
             </a>
         </div>
