@@ -194,7 +194,7 @@ if (!$result) {
 
         <!-- Bouton lien Coordonnées GPS centré -->
         <div class="mt-4 flex justify-center">
-            <a href="https://www.coordonnees-gps.fr/" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">
+            <a href="https://www.coordonnees-gps.fr/" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700" target="_blank">
                 Coordonnées GPS
             </a>
         </div>
