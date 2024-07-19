@@ -14,6 +14,46 @@ $user_email = $_SESSION['LOGGED_USER'];
 // Connexion à la base de données
 require('connection.php');
 
+// Inclure le fichier autoload de Composer pour utiliser PHPMailer
+require 'vendor/autoload.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+// Fonction pour envoyer un email
+function sendEmail($recipientEmail, $subject, $body)
+{
+    $mail = new PHPMailer(true);
+    try {
+        // Configuration SMTP
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';  // Serveur SMTP Gmail
+        $mail->SMTPAuth = true;
+        $mail->Username = 'votremail@gmail.com';  // Votre adresse Gmail
+        $mail->Password = 'password';  // Votre mot de passe Gmail
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = 587;
+
+        // Expéditeur et destinataire
+        $mail->setFrom('votremail@gmail.com', 'Votre Nom');
+        $mail->addAddress($recipientEmail);
+
+        // Contenu de l'email
+        $mail->isHTML(true);
+        $mail->CharSet = 'UTF-8';
+        $mail->Encoding = 'base64';
+        $mail->Subject = $subject;
+        $mail->Body = $body;
+
+        // Envoyer l'email
+        $mail->send();
+
+        // Retourner un message de confirmation
+        return "Email envoyé à {$recipientEmail}";
+    } catch (Exception $e) {
+        return "Erreur lors de l'envoi de l'email : {$mail->ErrorInfo}";
+    }
+}
+
 // Sélectionner toutes les soumissions de formulaire
 $query = "SELECT * FROM events";
 $result = $mysqlClient->query($query);
@@ -58,13 +98,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['event_id'])) {
                 $insertStmt->execute();
 
                 // Récupérer le nouveau nombre de bénévoles
-                $query = "SELECT nb_benevole FROM events WHERE id = :event_id";
+                $query = "SELECT nb_benevole, name FROM events WHERE id = :event_id";
                 $stmt = $mysqlClient->prepare($query);
                 $stmt->bindParam(':event_id', $event_id, PDO::PARAM_INT);
                 $stmt->execute();
                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
                 if ($result) {
+                    // Préparer l'email à envoyer à l'administrateur
+                    $eventName = $result['name'];
+                    $subject = "Nouvelle inscription à l'événement";
+                    $body = "Bonjour, ce bénévole ($user_email) participe à l'événement $eventName.";
+                    sendEmail('le recepteur (mail)', $subject, $body);
+
                     echo json_encode(['success' => true, 'new_count' => $result['nb_benevole']]);
                 } else {
                     echo json_encode(['success' => false, 'message' => 'Événement non trouvé']);
