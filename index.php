@@ -135,6 +135,7 @@ include_once('include/connection.php');
                 <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/bxDlWTrdsyg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
+<<<<<<< Updated upstream
     </div>
 </div>
 <section class="container mx-auto px-4 py-8 bg-white shadow-lg rounded-lg my-6">
@@ -190,6 +191,9 @@ include_once('include/connection.php');
         </table>
     </div>
 </section>
+=======
+    </div></div>
+>>>>>>> Stashed changes
 
 <div class="bg-white dark:bg-gray-900 text-black dark:text-white">
             <div class="min-h-screen flex flex-col items-center justify-center space-y-6">
@@ -276,7 +280,10 @@ include_once('include/connection.php');
 </section>
 <br>
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 <?php
 include "include/footer.php";
 ?>

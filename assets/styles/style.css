@@ -32,7 +32,11 @@ html {
 
 .bg-gray-stronge{
     /* background: #A9A9A9; */
+<<<<<<< Updated upstream
     height: 255svh;
+=======
+    height: 260vh;
+>>>>>>> Stashed changes
 }
 
 .form-container {
@@ -128,7 +132,11 @@ button {
         padding-right: 1rem;
     }
 
+<<<<<<< Updated upstream
     .place-image-contact {
+=======
+        .place-image-contact {
+>>>>>>> Stashed changes
         height: 50vw; /* Ajustez la hauteur pour les petits écrans */
     }
 
@@ -150,6 +158,7 @@ button {
 .form-container .form {
     width: 80%;
 }
+<<<<<<< Updated upstream
 
 .bg-gray-stronge{
     height: 180svh;
@@ -160,4 +169,6 @@ button {
     .bg-gray-stronge{
         height: 250svh;
     }
+=======
+>>>>>>> Stashed changes
 }

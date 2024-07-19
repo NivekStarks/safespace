@@ -29,7 +29,11 @@
                 </div>
             </div>
             <!-- Colonne de droite -->
+<<<<<<< Updated upstream
             <div class="w-full md:w-1/2 text-left md:text-left">
+=======
+            <div class="w-full md:w-1/2 text-left md:text-right">
+>>>>>>> Stashed changes
                 <h3 class="text-lg font-bold mb-4">À Propos de Nous</h3>
                 <p class="text-gray-400">Nous sommes une association dédiée à la lutte contre les violences dans tous les événements, en particulier au sein de la communauté sourde. Notre mission est de sensibiliser et de prévenir les violences à travers des ateliers et des stands d'information.</p>
             </div>
