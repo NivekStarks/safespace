@@ -149,7 +149,7 @@ include_once('include/connection.php');
         <!-- Accueil -->
         <section class="bg-custom bg-cover bg-center mx-auto hero-img flex align-center items-end">
             <div class="bg-gradient-to-r from-gray-500 rounded-lg py-8 px-6 w-full md:w-3/4">
-                <h1 class="text-4xl md:text-6xl text-white">Parenthèse - Safe Space Deaf</h1>
+                <h1 class="text-4xl md:text-6xl text-white">Parenthèse - Safe Space</h1>
                 <div class="text-xl md:text-3xl text-white mt-4">Sensibiliser, faire des ateliers, présenter notre stand pour prévenir tout type de violence qui peuvent arriver lors des évènements Sourds à Toulouse et en France.</div>
             </div>
         </section>
