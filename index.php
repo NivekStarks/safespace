@@ -84,7 +84,7 @@ include_once('include/connection.php');
         $stmt->execute([$name, $startDateTime, $endDateTime, $participants, $domain, $needs, $lieu, $email, $latitude, $longitude]);
 
         if ($stmt) {
-            echo "<p class='text-green-500'>Nouvel enregistrement créé avec succès.</p>";
+            echo "<div class='bg-green-500 text-white p-4'>Votre demande a été envoyée avec succès!</div>";
         } else {
             echo "<p class='text-red-500'>Erreur: " . $stmt->errorInfo()[2] . "</p>";
         }
@@ -264,6 +264,16 @@ include_once('include/connection.php');
                         <div>
                             <label for="name" class="block text-gray-600">Titre de l'évènement</label>
                             <input type="text" id="name" name="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        <!-- Adresse mail -->
+                        <div>
+                            <label for="email" class="block text-gray-600">Adresse de contact</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        <!-- LIEU -->
+                        <div>
+                            <label for="name" class="block text-gray-600">Lieu de l'événement</label>
+                            <input type="text" id="LIEU" name="LIEU" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                         </div>
                         <!-- Date et Heure de début -->
                         <div>
