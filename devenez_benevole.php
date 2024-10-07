@@ -5,17 +5,17 @@ session_start(); // Ensure session is started at the top
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
-    $nom = htmlspecialchars($_POST['nom'] ?? '');
-    $prenom = htmlspecialchars($_POST['prenom'] ?? '');
-    $email = htmlspecialchars($_POST['email'] ?? '');
-    $profil = htmlspecialchars($_POST['profil'] ?? '');
-    $adresse = htmlspecialchars($_POST['adresse'] ?? '');
-    $code_postal = htmlspecialchars($_POST['code_postal'] ?? '');
-    $ville = htmlspecialchars($_POST['ville'] ?? '');
-    $choix_formation = htmlspecialchars($_POST['choix_formation'] ?? '');
-    $lieu_formation = htmlspecialchars($_POST['lieu_formation'] ?? '');
-    $participants = htmlspecialchars($_POST['participants'] ?? '');
-    $description_besoin = htmlspecialchars($_POST['description_besoin'] ?? '');
+    $nom = strip_tags($_POST['nom'] ?? '');
+    $prenom = strip_tags($_POST['prenom'] ?? '');
+    $email = strip_tags($_POST['email'] ?? '');
+    $profil = strip_tags($_POST['profil'] ?? '');
+    $adresse = strip_tags($_POST['adresse'] ?? '');
+    $code_postal = strip_tags($_POST['code_postal'] ?? '');
+    $ville = strip_tags($_POST['ville'] ?? '');
+    $choix_formation = strip_tags($_POST['choix_formation'] ?? '');
+    $lieu_formation = strip_tags($_POST['lieu_formation'] ?? '');
+    $participants = strip_tags($_POST['participants'] ?? '');
+    $description_besoin = strip_tags($_POST['description_besoin'] ?? '');
     $numero_siret = isset($_POST['numero_siret']) && is_numeric($_POST['numero_siret']) ? $_POST['numero_siret'] : NULL;
     $numero_rna = isset($_POST['numero_rna']) && is_numeric($_POST['numero_rna']) ? $_POST['numero_rna'] : NULL;
 
