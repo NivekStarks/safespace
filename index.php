@@ -66,15 +66,15 @@ include_once('include/connection.php');
     ];
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        
-        $name = htmlspecialchars($_POST['name'], ENT_QUOTES, 'UTF-8');
-        $startDateTime = htmlspecialchars($_POST['startDateTime'], ENT_QUOTES, 'UTF-8');
-        $endDateTime = htmlspecialchars($_POST['endDateTime'], ENT_QUOTES, 'UTF-8');
-        $participants = htmlspecialchars($_POST['participants'], ENT_QUOTES, 'UTF-8');
-        $domain = htmlspecialchars($_POST['domain'], ENT_QUOTES, 'UTF-8');
-        $needs = htmlspecialchars($_POST['needs'], ENT_QUOTES, 'UTF-8');
-        $lieu = htmlspecialchars($_POST['LIEU'], ENT_QUOTES, 'UTF-8');
-        $email = htmlspecialchars($_POST['email'], ENT_QUOTES, 'UTF-8');
+
+        $name = strip_tags($_POST['name'], ENT_QUOTES, 'UTF-8');
+        $startDateTime = strip_tags($_POST['startDateTime'], ENT_QUOTES, 'UTF-8');
+        $endDateTime = strip_tags($_POST['endDateTime'], ENT_QUOTES, 'UTF-8');
+        $participants = strip_tags($_POST['participants'], ENT_QUOTES, 'UTF-8');
+        $domain = strip_tags($_POST['domain'], ENT_QUOTES, 'UTF-8');
+        $needs = strip_tags($_POST['needs'], ENT_QUOTES, 'UTF-8');
+        $lieu = strip_tags($_POST['LIEU'], ENT_QUOTES, 'UTF-8');
+        $email = strip_tags($_POST['email'], ENT_QUOTES, 'UTF-8');
 
         // Retrieve the coordinates for the selected city
         $latitude = $cities[$lieu]['lat'];
