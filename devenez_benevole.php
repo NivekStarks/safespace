@@ -5,17 +5,17 @@ session_start(); // Ensure session is started at the top
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
-    $nom = $_POST['nom'] ?? '';
-    $prenom = $_POST['prenom'] ?? '';
-    $email = $_POST['email'] ?? '';
-    $profil = $_POST['profil'] ?? '';
-    $adresse = $_POST['adresse'] ?? '';
-    $code_postal = $_POST['code_postal'] ?? '';
-    $ville = $_POST['ville'] ?? '';
-    $choix_formation = $_POST['choix_formation'] ?? '';
-    $lieu_formation = $_POST['lieu_formation'] ?? '';
-    $participants = $_POST['participants'] ?? '';
-    $description_besoin = $_POST['description_besoin'] ?? '';
+    $nom = htmlspecialchars($_POST['nom'] ?? '');
+    $prenom = htmlspecialchars($_POST['prenom'] ?? '');
+    $email = htmlspecialchars($_POST['email'] ?? '');
+    $profil = htmlspecialchars($_POST['profil'] ?? '');
+    $adresse = htmlspecialchars($_POST['adresse'] ?? '');
+    $code_postal = htmlspecialchars($_POST['code_postal'] ?? '');
+    $ville = htmlspecialchars($_POST['ville'] ?? '');
+    $choix_formation = htmlspecialchars($_POST['choix_formation'] ?? '');
+    $lieu_formation = htmlspecialchars($_POST['lieu_formation'] ?? '');
+    $participants = htmlspecialchars($_POST['participants'] ?? '');
+    $description_besoin = htmlspecialchars($_POST['description_besoin'] ?? '');
     $numero_siret = isset($_POST['numero_siret']) && is_numeric($_POST['numero_siret']) ? $_POST['numero_siret'] : NULL;
     $numero_rna = isset($_POST['numero_rna']) && is_numeric($_POST['numero_rna']) ? $_POST['numero_rna'] : NULL;
 

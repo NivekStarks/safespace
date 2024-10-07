@@ -66,14 +66,15 @@ include_once('include/connection.php');
     ];
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $name = $_POST['name'];
-        $startDateTime = $_POST['startDateTime'];
-        $endDateTime = $_POST['endDateTime'];
-        $participants = $_POST['participants'];
-        $domain = $_POST['domain'];
-        $needs = $_POST['needs'];
-        $lieu = $_POST['LIEU'];
-        $email = $_POST['email'];
+        
+        $name = htmlspecialchars($_POST['name'], ENT_QUOTES, 'UTF-8');
+        $startDateTime = htmlspecialchars($_POST['startDateTime'], ENT_QUOTES, 'UTF-8');
+        $endDateTime = htmlspecialchars($_POST['endDateTime'], ENT_QUOTES, 'UTF-8');
+        $participants = htmlspecialchars($_POST['participants'], ENT_QUOTES, 'UTF-8');
+        $domain = htmlspecialchars($_POST['domain'], ENT_QUOTES, 'UTF-8');
+        $needs = htmlspecialchars($_POST['needs'], ENT_QUOTES, 'UTF-8');
+        $lieu = htmlspecialchars($_POST['LIEU'], ENT_QUOTES, 'UTF-8');
+        $email = htmlspecialchars($_POST['email'], ENT_QUOTES, 'UTF-8');
 
         // Retrieve the coordinates for the selected city
         $latitude = $cities[$lieu]['lat'];
