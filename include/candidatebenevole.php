@@ -78,8 +78,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <td class="py-2 px-4 border-b"><?= htmlspecialchars($candidat['lieu_form']) ?></td>
                             <td class="py-2 px-4 border-b"><?= htmlspecialchars($candidat['nbr_form']) ?></td>
                             <td class="py-2 px-4 border-b"><?= htmlspecialchars($candidat['description']) ?></td>
-                            <td class="py-2 px-4 border-b"><?= htmlspecialchars($candidat['numero_siret']) ?></td>
-                            <td class="py-2 px-4 border-b"><?= htmlspecialchars($candidat['numero_rna']) ?></td>
+                            <td class="py-2 px-4 border-b"><?= $candidat['numero_siret'] ?></td>
+                            <td class="py-2 px-4 border-b"><?= $candidat['numero_rna'] ?></td>
                             <td class="py-2 px-4 border-b">
                                 <form method="POST" class="flex flex-col sm:flex-row gap-2">
                                     <input type="hidden" name="mail" value="<?= $candidat['mail'] ?>">
