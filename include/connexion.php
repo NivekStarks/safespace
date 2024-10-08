@@ -40,7 +40,8 @@ if (!empty($_POST['MailCo']) && !empty($_POST['mot_passe'])) {
     foreach ($benevoles as $benevole) {
         if ($benevole['MailBenevole'] == $mail) {
             $user_found = true;
-            if ($mot_passe == $benevole['MDPBenevole']) {
+            // Utiliser password_verify pour comparer le mot de passe saisi avec le mot de passe haché
+            if (password_verify($mot_passe, $benevole['MDPBenevole'])) {
                 $_SESSION['LOGGED_USER'] = $mail;
                 header("Location: carte.php"); // Redirect to volunteer page
                 exit();
@@ -49,6 +50,7 @@ if (!empty($_POST['MailCo']) && !empty($_POST['mot_passe'])) {
             }
         }
     }
+
 
     // If no user found
     if (!$user_found) {

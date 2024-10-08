@@ -64,7 +64,7 @@ if (isset($_GET['confirm']) && $_GET['confirm'] === 'true') {
         $mot_passenew = $_SESSION['NEW_USER_TEMP']['mdp'];
 
         // Hachage du mot de passe avant l'insertion
-        $mot_passenew_hashed = password_hash($mot_passenew, PASSWORD_DEFAULT);
+        $mot_passenew_hashed = password_hash($mot_passenew, PASSWORD_DEFAULT); // Cela hache le mot de passe
 
         // Ajouter le bénévole à la base de données
         $sqlQueryBenevole = 'INSERT INTO benevole (MailBenevole, MDPBenevole) VALUES (:mail, :mdp)';
@@ -73,6 +73,7 @@ if (isset($_GET['confirm']) && $_GET['confirm'] === 'true') {
             'mail' => $mailnew,
             'mdp' => $mot_passenew_hashed // Stocker le mot de passe haché
         ]);
+
 
         // Envoyer un e-mail avec PHPMailer
         $mail = new PHPMailer(true);
@@ -105,6 +106,7 @@ if (isset($_GET['confirm']) && $_GET['confirm'] === 'true') {
         }
     }
 }
+
 
 // Vérifiez si l'email est pré-rempli depuis l'URL
 $email_new = isset($_GET['email_new']) ? htmlspecialchars($_GET['email_new']) : '';
