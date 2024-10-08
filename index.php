@@ -67,14 +67,14 @@ include_once('include/connection.php');
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-        $name = strip_tags($_POST['name'], ENT_QUOTES, 'UTF-8');
-        $startDateTime = strip_tags($_POST['startDateTime'], ENT_QUOTES, 'UTF-8');
-        $endDateTime = strip_tags($_POST['endDateTime'], ENT_QUOTES, 'UTF-8');
-        $participants = strip_tags($_POST['participants'], ENT_QUOTES, 'UTF-8');
-        $domain = strip_tags($_POST['domain'], ENT_QUOTES, 'UTF-8');
-        $needs = strip_tags($_POST['needs'], ENT_QUOTES, 'UTF-8');
-        $lieu = strip_tags($_POST['LIEU'], ENT_QUOTES, 'UTF-8');
-        $email = strip_tags($_POST['email'], ENT_QUOTES, 'UTF-8');
+        $name = strip_tags($_POST['name']);
+        $startDateTime = strip_tags($_POST['startDateTime']);
+        $endDateTime = strip_tags($_POST['endDateTime']);
+        $participants = strip_tags($_POST['participants']);
+        $domain = strip_tags($_POST['domain']);
+        $needs = strip_tags($_POST['needs']);
+        $lieu = strip_tags($_POST['LIEU']);
+        $email = strip_tags($_POST['email']);
 
         // Retrieve the coordinates for the selected city
         $latitude = $cities[$lieu]['lat'];

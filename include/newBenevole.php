@@ -30,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($_POST['email_new'])) {
         $mailnew = $_POST['email_new'];
         $mot_passenew = generateRandomPassword(); // Générer un mot de passe aléatoire
+        $hashedPassword = password_hash($mot_passenew, PASSWORD_BCRYPT); // Hachage du mot de passe
 
         $isEmailExists = false;
         foreach ($benevoles as $benevole) {
@@ -48,11 +49,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Stocker les données dans une variable de session temporaire
             $_SESSION['NEW_USER_TEMP'] = [
                 'mail' => $mailnew,
-                'mdp' => $mot_passenew
+                'mdp' => $mot_passenew,
+                'hashed_mdp' => $hashedPassword // Ajout du mot de passe haché
             ];
         }
     }
 }
+
 
 // Vérifiez si l'ajout a été confirmé
 if (isset($_GET['confirm']) && $_GET['confirm'] === 'true') {
@@ -60,12 +63,15 @@ if (isset($_GET['confirm']) && $_GET['confirm'] === 'true') {
         $mailnew = $_SESSION['NEW_USER_TEMP']['mail'];
         $mot_passenew = $_SESSION['NEW_USER_TEMP']['mdp'];
 
+        // Hachage du mot de passe avant l'insertion
+        $mot_passenew_hashed = password_hash($mot_passenew, PASSWORD_DEFAULT);
+
         // Ajouter le bénévole à la base de données
         $sqlQueryBenevole = 'INSERT INTO benevole (MailBenevole, MDPBenevole) VALUES (:mail, :mdp)';
         $prepBenevole = $mysqlClient->prepare($sqlQueryBenevole);
         $prepBenevole->execute([
             'mail' => $mailnew,
-            'mdp' => $mot_passenew // Hash du mot de passe
+            'mdp' => $mot_passenew_hashed // Stocker le mot de passe haché
         ]);
 
         // Envoyer un e-mail avec PHPMailer
@@ -168,16 +174,5 @@ $email_new = isset($_GET['email_new']) ? htmlspecialchars($_GET['email_new']) : 
         </div>
     <?php endif; ?>
 </main>
-
-<script>
-    function myFunction() {
-        var x = document.getElementById("myInput");
-        if (x.type === "password") {
-            x.type = "text";
-        } else {
-            x.type = "password";
-        }
-    }
-</script>
 </body>
 </html>
