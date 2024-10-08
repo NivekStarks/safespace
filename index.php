@@ -1,5 +1,12 @@
 <?php
 include_once('include/connection.php');
+session_start();
+
+// Vérifier si le token CSRF est déjà défini dans la session
+if (empty($_SESSION['csrf_token'])) {
+    // Générer un token CSRF et le stocker dans la session
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -66,6 +73,11 @@ include_once('include/connection.php');
     ];
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+        // Vérification du token CSRF
+        if (!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+            die("Token CSRF invalide !");
+        }
 
         $name = strip_tags($_POST['name']);
         $startDateTime = strip_tags($_POST['startDateTime']);
@@ -261,6 +273,9 @@ include_once('include/connection.php');
                 <div class="form w-full md:w-1/2 md:pl-8">
                     <h2 class="text-2xl font-bold text-gray-800 mb-4">NOUS CONTACTER</h2>
                     <form action="" method="POST" class="space-y-4">
+                        <!-- Token CSRF -->
+                        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+                        
                         <!-- Titre de l'évènement -->
                         <div>
                             <label for="name" class="block text-gray-600">Titre de l'évènement</label>
@@ -273,7 +288,7 @@ include_once('include/connection.php');
                         </div>
                         <!-- LIEU -->
                         <div>
-                            <label for="name" class="block text-gray-600">Lieu de l'événement</label>
+                            <label for="LIEU" class="block text-gray-600">Lieu de l'événement</label>
                             <input type="text" id="LIEU" name="LIEU" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                         </div>
                         <!-- Date et Heure de début -->
@@ -306,6 +321,7 @@ include_once('include/connection.php');
                             <button type="submit" class="w-full px-4 py-2 bg-blue-500 text-white hover:bg-blue-700 rounded-3xl">Envoyer</button>
                         </div>
                     </form>
+
                 </div>
             </div>
         </section>
