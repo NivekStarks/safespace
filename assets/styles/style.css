@@ -51,8 +51,8 @@ html {
 }
 
 .bg-gray-stronge {
-    /* background: #A9A9A9; */
-    height: 260vh;
+    min-height: 100vh; /* Assurez-vous que la section occupe au moins la hauteur de la fenêtre */
+    height: auto; /* Supprimer la hauteur fixe */
 }
 
 .form-container {
@@ -69,6 +69,17 @@ html {
 
 .form_place {
     margin-top: 8em !important;
+    margin-bottom: 4em !important; /* Ajoutez un espacement inférieur */
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+footer {
+    margin-top: auto;
 }
 
 h2 {
@@ -173,6 +184,10 @@ button {
         flex-direction: column;
     }
 
+    .form-container {
+        padding-bottom: 2em; /* Augmenter l'espacement inférieur du formulaire */
+    }
+
     .form-container .form {
         width: 90%;
         padding-left: 0;
@@ -180,7 +195,7 @@ button {
     }
 
     .bg-gray-stronge {
-        height: 165vh;
+        height: auto; /* Ajuste la hauteur pour les mobiles */
     }
 }
 
@@ -188,4 +203,9 @@ button {
     .bg-gray-stronge {
         height: 240vh;
     }
+}
+
+.form-droite{
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
