@@ -1206,3 +1206,10 @@ button {
     line-height: 1.75rem;
   }
 }
+
+.g-recaptcha {
+  display: block;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}

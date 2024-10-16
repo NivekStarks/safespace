@@ -1,10 +1,35 @@
 <?php
 include_once("include/connection.php");
 
-session_start(); // Ensure session is started at the top
+session_start(); // Assurez-vous que la session est démarrée au début
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve form data
+    // Votre clé secrète reCAPTCHA
+    $secret = 'KEY';
+
+    // Vérifier si la réponse reCAPTCHA existe
+    if (empty($_POST['g-recaptcha-response'])) {
+        $_SESSION['message'] = "<div class='bg-red-500 text-white p-4 rounded-lg'>Veuillez cocher le reCAPTCHA.</div>";
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit();
+    }
+
+    // Récupérer la réponse reCAPTCHA
+    $captcha_response = $_POST['g-recaptcha-response'];
+
+    // Vérifier la réponse reCAPTCHA avec l'API de Google
+    $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$secret}&response={$captcha_response}");
+    $response_keys = json_decode($response, true);
+
+    if (!$response_keys["success"]) {
+        $_SESSION['message'] = "<div class='bg-red-500 text-white p-4 rounded-lg'>Échec de la vérification reCAPTCHA. Veuillez réessayer.</div>";
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit();
+    }
+
+    // Le reCAPTCHA est validé, poursuivre avec le traitement du formulaire
+
+    // Récupérer les données du formulaire
     $nom = strip_tags($_POST['nom'] ?? '');
     $prenom = strip_tags($_POST['prenom'] ?? '');
     $email = strip_tags($_POST['email'] ?? '');
@@ -19,13 +44,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $numero_siret = isset($_POST['numero_siret']) && is_numeric($_POST['numero_siret']) ? $_POST['numero_siret'] : NULL;
     $numero_rna = isset($_POST['numero_rna']) && is_numeric($_POST['numero_rna']) ? $_POST['numero_rna'] : NULL;
 
-    // Prepare the SQL statement
+    // Préparer la requête SQL
     $sql = "INSERT INTO candidaturebenevole (nom, prenom, mail, profile, adresse, postale, ville, formation, lieu_form, nbr_form, description, numero_siret, numero_rna)
             VALUES (:nom, :prenom, :email, :profil, :adresse, :code_postal, :ville, :choix_formation, :lieu_formation, :participants, :description_besoin, :numero_siret, :numero_rna)";
 
     $stmt = $mysqlClient->prepare($sql);
 
-    // Bind parameters
+    // Lier les paramètres
     $stmt->bindParam(':nom', $nom);
     $stmt->bindParam(':prenom', $prenom);
     $stmt->bindParam(':email', $email);
@@ -40,14 +65,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bindParam(':numero_siret', $numero_siret, PDO::PARAM_INT);
     $stmt->bindParam(':numero_rna', $numero_rna, PDO::PARAM_INT);
 
-    // Execute the statement
+    // Exécuter la requête
     if ($stmt->execute()) {
         $_SESSION['message'] = "<div class='bg-green-500 text-white p-4 rounded-lg'>Votre candidature a été envoyée avec succès!</div>";
     } else {
         $_SESSION['message'] = "<div class='bg-red-500 text-white p-4 rounded-lg'>Erreur lors de l'envoi de la candidature.</div>";
     }
 
-    // Redirect to the same page to avoid resubmission
+    // Rediriger pour éviter la resoumission du formulaire
     header("Location: " . $_SERVER['PHP_SELF']);
     exit();
 }
@@ -57,50 +82,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="fr">
 
 <head>
+    <!-- Vos balises head existantes -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Devenez un bénévole !</title>
     <link rel="shortcut icon" href="assets/img/parenthese_logo.jpeg" type="image/x-icon">
     <link rel="stylesheet" href="assets/styles/output.css">
     <script src="assets/scripts/script.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="assets/scripts/jquery.zoomooz-helpers.js"></script>
-		<script type="text/javascript" src="assets/scripts/jquery.zoomooz-anim.js"></script>
-		<script type="text/javascript" src="assets/scripts/jquery.zoomooz-core.js"></script>
-		<script type="text/javascript" src="assets/scripts/purecssmatrix.js"></script>
-		<script type="text/javascript" src="assets/scripts/sylvester.src.stripped.js"></script>
-		<script type="text/javascript" src="assets/scripts/jquery.zoomooz-zoomTarget.js"></script>
-		<script type="text/javascript" src="assets/scripts/jquery.zoomooz-zoomContainer.js"></script>
-        <script src="assets/scripts/menu.js"></script>
+    <!-- Vos autres scripts et liens -->
+    <!-- Script reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="https://kit.fontawesome.com/e3fa649643.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script>
+        // Votre script JavaScript existant pour toggleFields()
         function toggleFields() {
             const profil = document.getElementById('profil').value;
-            document.getElementById('siret-field').style.display = profil === 'entreprise' ? 'block' : 'none';
-            document.getElementById('rna-field').style.display = profil === 'association' ? 'block' : 'none';
+            const siretField = document.getElementById('siret-field');
+            const rnaField = document.getElementById('rna-field');
+
+            if (profil === 'association') {
+                siretField.style.display = 'none';
+                rnaField.style.display = 'block';
+            } else if (profil === 'entreprise') {
+                siretField.style.display = 'block';
+                rnaField.style.display = 'none';
+            } else {
+                siretField.style.display = 'none';
+                rnaField.style.display = 'none';
+            }
         }
 
         window.onload = function () {
             toggleFields();
         };
-
-        function toggleFields() {
-        const profil = document.getElementById('profil').value;
-        const siretField = document.getElementById('siret-field');
-        const rnaField = document.getElementById('rna-field');
-
-        if (profil === 'association') {
-            siretField.style.display = 'none';
-            rnaField.style.display = 'block';
-        } else if (profil === 'entreprise') {
-            siretField.style.display = 'block';
-            rnaField.style.display = 'none';
-        } else {
-            siretField.style.display = 'none';
-            rnaField.style.display = 'none';
-        }
-    }
     </script>
 </head>
 
@@ -111,7 +126,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="container mx-auto p-4">
             <?php
             echo $_SESSION['message'];
-            unset($_SESSION['message']); // Clear the message after displaying
+            unset($_SESSION['message']);
             ?>
         </div>
     <?php endif; ?>
@@ -190,6 +205,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="description_besoin" class="block text-gray-600 dark:text-white">Description du besoin :</label>
                 <textarea id="description_besoin" name="description_besoin" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
             </div>
+
+            <!-- Ajouter le widget reCAPTCHA -->
+            <div>
+                <div class="g-recaptcha" data-sitekey="VOTRE_CLÉ_DE_SITE"></div>
+            </div>
+
             <div>
                 <button type="submit" class="w-full px-4 py-2 bg-blue-500 text-white dark:bg-purple-700 rounded hover:bg-blue-700">Envoyer</button>
             </div>
@@ -198,7 +219,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php
         include "include/footer.php";
     ?>
-
 </body>
 
 </html>
